@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from './components/Navbar'
+import HeroSection from './components/HeroSection'
 
 export default function page(){
 
@@ -9,7 +10,10 @@ export default function page(){
         
     <div className="max-w-7xl mx-auto">
               
-     <Navbar/>
+       <Navbar/>
+
+      <HeroSection />
+
 
     </div>    
 

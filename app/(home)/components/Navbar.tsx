@@ -1,5 +1,5 @@
 import React from 'react';
-import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { SiGithub, SiLinkedin, SiX } from 'react-icons/si';
 import { FaFilePdf } from 'react-icons/fa6';
 import Link from 'next/link';
 
@@ -18,7 +18,7 @@ export default function Navbar() {
     {
       link: 'https://twitter.com/YLamouddan',
       label: 'Twitter',
-      icon: SiTwitter,
+      icon: SiX,
     },
     {
       link: 'https://YLamouddan.com',
@@ -28,18 +28,28 @@ export default function Navbar() {
   ];
 
   return (
-    <nav>
-      <h1>YLmaouddan ‍♂️⚡️‍</h1>
-      <div>
-        {socials.map((social, index) => (
-          <Link
-            href={social.link}
-            key={index}
-            aria-label={social.label}
-          >
-            {social.icon} {social.label}
-          </Link>
-        ))}
+    <nav className=" py-10 flex justify-between items-center ">
+      <h1 className="text-2xl font-bold underline underline-offset-8 decoration-green-500 -rotate-2">YLmaouddan👷🏻‍♂️⚡️👨🏻‍💻</h1>
+      <div className="flex items-center gap-5">
+        {socials.map((social,index) => {
+
+            const Icon = social.icon;
+
+            return(
+
+                <Link
+                    href={social.link}
+
+                    key={index}
+
+                    aria-label={social.label}
+                >
+                    <Icon className="w-5 h-5 hover:scale-125 transition-all"/>
+
+            
+                </Link>
+            );
+        })}
       </div>
     </nav>
   );
