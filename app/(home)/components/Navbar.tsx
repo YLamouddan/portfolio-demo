@@ -1,41 +1,46 @@
-import React from 'react'
+import React from 'react';
+import { SiGithub, SiLinkedin, SiTwitter } from 'react-icons/si';
+import { FaFilePdf } from 'react-icons/fa6';
+import Link from 'next/link';
 
 export default function Navbar() {
-
-//const with links and labels and icons for linkedin, twitter, github, and one for cv
-
-const socials = [
-{
-    link :  "www.linkedin.com/in/iyassir",
-
-    Label: "Linkedin",
-
-    icon: "",
-},
-{
-    link : "https://github.com/YLamouddan",
-
-    Label: "Github",
-
-    icon: "",
-},
-{
-    link : "https://twitter.com/YLamouddan",
-
-    Label: "Twitter",
-
-    icon: "",
-},
-
-    
-
-
-]
+  const socials = [
+    {
+      link: 'https://www.Linkedin.com/in/iyassir',
+      label: 'Linkedin',
+      icon: SiLinkedin,
+    },
+    {
+      link: 'https://github.com/YLamouddan',
+      label: 'Github',
+      icon: SiGithub,
+    },
+    {
+      link: 'https://twitter.com/YLamouddan',
+      label: 'Twitter',
+      icon: SiTwitter,
+    },
+    {
+      link: 'https://YLamouddan.com',
+      label: 'Resume',
+      icon: FaFilePdf,
+    },
+  ];
 
   return (
-    <div>
-        <h1>YASSIR 👷🏻‍♂️⚡️👨🏻‍💻</h1>
-
-    </div>
-  )
+    <nav>
+      <h1>YLmaouddan ‍♂️⚡️‍</h1>
+      <div>
+        {socials.map((social, index) => (
+          <Link
+            href={social.link}
+            key={index}
+            aria-label={social.label}
+          >
+            {social.icon} {social.label}
+          </Link>
+        ))}
+      </div>
+    </nav>
+  );
 }
