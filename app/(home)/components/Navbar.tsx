@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Navbar() {
   const socials = [
     {
-      link: "https://www.Linkedin.com/in/iyassir",
+      link: "https://linkedin.com/in/YLamouddan",
       label: "Linkedin",
       icon: SiLinkedin,
     },
