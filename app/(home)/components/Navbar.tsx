@@ -2,8 +2,9 @@ import React from "react";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
 import { FaFilePdf } from "react-icons/fa6";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
-export default function Navbar() {
+export default function Navbar({ className }: { className?: string }) {
   const socials = [
     {
       link: "https://linkedin.com/in/YLamouddan",
@@ -28,7 +29,7 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className=" py-10 flex justify-between items-center ">
+    <nav className={cn(" py-10 flex justify-between items-center ", className)}>
       <h1 className="text-2xl font-bold underline underline-offset-8 decoration-green-500 -rotate-2">
         YLmaouddan👷🏻‍♂️⚡️👨🏻‍💻
       </h1>
