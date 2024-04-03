@@ -21,7 +21,7 @@ export default function Navbar() {
       icon: SiX,
     },
     {
-      link: "https://YLamouddan.com",
+      link: "./Yassir Lamouddan Resume.pdf",
       label: "Resume",
       icon: FaFilePdf,
     },
