@@ -8,7 +8,7 @@ export default function Title({
   className?: string;
 }) {
   return (
-    <div className="className">
+    <div className={className}>
       <h1 className=" text-3xl font-bold  group-hover:text-green-500 transition-all">
         {" "}
         {text}
