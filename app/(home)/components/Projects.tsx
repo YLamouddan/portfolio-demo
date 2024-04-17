@@ -14,13 +14,13 @@ export default function Projects() {
       cover: "/Portfolio.png",
       background: "bg-indigo-500",
     },
-    {
-      title: "Portfolio Website",
-      tech: [SiReact, SiNextdotjs, SiTailwindcss],
-      link: "https://ylamouddan.com/",
-      cover: "/Portfolio.png",
-      background: "bg-indigo-500",
-    },
+    // {
+    //   title: "Portfolio Website",
+    //   tech: [SiReact, SiNextdotjs, SiTailwindcss],
+    //   link: "https://ylamouddan.com/",
+    //   cover: "/Portfolio.png",
+    //   background: "bg-indigo-500",
+    // },
   ];
 
   return (
