@@ -22,7 +22,7 @@ export default function Navbar({ className }: { className?: string }) {
       icon: SiX,
     },
     {
-      link: "./Yassir Lamouddan Resume.pdf",
+      link: "./Yassir Lamouddan.pdf",
       label: "Resume",
       icon: FaFilePdf,
     },
