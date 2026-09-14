@@ -18,7 +18,7 @@ export default function HeroSection() {
 
         <p className=" md:w-96 text-lg text-gray-300">
           {
-            "Based in Poland,I'm a Web developer and an Electrical Engineer. I'm passionate about building a modern web application that users love"
+            "I'm a web developer with a background in electrical engineering. I build web applications, automate repetitive tasks, and run my own self-hosted infrastructure."
           }
         </p>
 
@@ -44,9 +44,9 @@ export default function HeroSection() {
 
           <div className="glow absolute top-[40%] right-1/2 -z-10 "></div>
         </div>
-        <div className="absolute bottom-5 sm:bottom-14 left-0 sm: -left-10">
+        <div className="absolute bottom-5 sm:bottom-14 left-0 sm:-left-10">
           <MovingBorderBtn borderRadius="0.5rem" className="p-3 font-semibold">
-            <p>📢 Avalivale For Work </p>
+            <p>Open to opportunities </p>
           </MovingBorderBtn>
         </div>
       </div>

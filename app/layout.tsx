@@ -8,26 +8,26 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://ylamouddan.com/"),
 
-  title: "YLamouddan",
+  title: "Yassir Lamouddan | Development & Automation",
   authors: {
     name: "YLamouddan",
   },
 
   description:
-    "Based in Poland,I'm a Web developer and an Electrical Engineer. I'm passionate about building a modern web application that users love",
+    "Web applications, automation, and self-hosted infrastructure by Yassir Lamouddan, a developer with a background in electrical engineering.",
   openGraph: {
-    title: "YLamouddan",
+    title: "Yassir Lamouddan | Development & Automation",
     description:
-      "Based in Poland,I'm a Web developer and an Electrical Engineer. I'm passionate about building a modern web application that users love",
+      "Web applications, automation, and self-hosted infrastructure by Yassir Lamouddan, a developer with a background in electrical engineering.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
     images: "/og.png",
     type: "website",
   },
-  keywords: ["daily web coding", "chensokheng", "dailywebcoding"],
+  keywords: ["Yassir Lamouddan", "web development", "automation", "self-hosting"],
 };
 //export const metadata: Metadata = {
-//title: "YLamouddan",
+//title: "Yassir Lamouddan | Development & Automation",
 //description: "Yassir Lamouddan's Personal Portfolio",
 //};
 
