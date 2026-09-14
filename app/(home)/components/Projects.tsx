@@ -2,6 +2,24 @@ import Link from "next/link";
 
 const projects = [
   {
+    title: "Invoice follow-up planner",
+    category: "Business automation · Working demo",
+    description: "An unpaid-invoice spreadsheet can turn into a manual chase list. This tool validates CSV data, calculates overdue days, and puts the oldest invoices first.",
+    detail: "Try it with fictional invoices, review follow-up drafts, and export a prioritised plan. No emails are sent.",
+    tech: ["TypeScript", "React", "CSV processing", "Workflow rules"],
+    link: "/projects/invoice-follow-up",
+    linkLabel: "Try the invoice planner",
+  },
+  {
+    title: "Lead intake & routing",
+    category: "Business automation · Working demo",
+    description: "Incoming enquiries need a clear owner and next action. This tool routes them by service, budget, and urgency, with a visible explanation for each decision.",
+    detail: "Adjust the qualification rules, generate a reply draft, and export the enquiry for CRM import. Includes a fictional sample enquiry.",
+    tech: ["TypeScript", "React", "Form validation", "CSV export"],
+    link: "/projects/lead-routing",
+    linkLabel: "Try the lead router",
+  },
+  {
     title: "Self-hosted infrastructure",
     category: "Infrastructure · Personal project",
     description: "A Docker Compose stack for running personal services on a VPS. It brings together a reverse proxy, identity management, and tunnel-based access, with separate networks for private services.",
@@ -16,12 +34,11 @@ const projects = [
     tech: ["Obsidian", "CouchDB", "TaskNotes", "MCP", "Docker"],
   },
   {
-    title: "Portfolio website",
-    category: "Web development",
-    description: "My personal site, built with Next.js and TypeScript to bring my projects, technical interests, and contact details into one place.",
-    detail: "A responsive interface built with React components and Tailwind CSS, deployed on Vercel.",
-    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS"],
-    link: "https://github.com/YLamouddan/portfolio-demo",
+    title: "Private AI assistant environment",
+    category: "AI tooling · Personal integration",
+    description: "A privately hosted Hermes assistant with a model gateway and separate container networks for provider access and internal communication.",
+    detail: "My work focuses on deploying and integrating the existing tools, configuring private access, and maintaining the environment.",
+    tech: ["Hermes", "OmniRoute", "Docker", "Tailscale", "Linux"],
   },
 ];
 
@@ -30,7 +47,7 @@ export default function Projects() {
     <section id="projects" aria-labelledby="projects-title" className="py-16 scroll-mt-8">
       <p className="text-sm text-green-400 mb-3">Selected work</p>
       <h2 id="projects-title" className="text-3xl sm:text-4xl font-bold">Projects</h2>
-      <p className="mt-4 max-w-2xl text-gray-300">Web development and the systems I configure and maintain for everyday use.</p>
+      <p className="mt-4 max-w-2xl text-gray-300">Try the business workflow demos, then explore the personal infrastructure and integrations behind my work. The demos use fictional sample data and are independent portfolio projects.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10">
         {projects.map((project) => (
           <article key={project.title} className="rounded-2xl border border-white/15 bg-zinc-950 p-6 flex flex-col">
@@ -41,7 +58,7 @@ export default function Projects() {
             <ul aria-label="Technologies" className="flex flex-wrap gap-2 mt-6 mb-6">
               {project.tech.map((tech) => <li key={tech} className="text-xs rounded-full border border-white/15 px-3 py-1.5 text-gray-300">{tech}</li>)}
             </ul>
-            {project.link ? <Link href={project.link} className="mt-auto text-green-400 underline underline-offset-4">View source on GitHub <span aria-hidden="true">↗</span></Link> : <p className="mt-auto text-sm text-gray-400">Private project · Details available on request</p>}
+            {project.link ? <Link href={project.link} className="mt-auto text-green-400 underline underline-offset-4">{project.linkLabel} <span aria-hidden="true">→</span></Link> : <p className="mt-auto text-sm text-gray-400">Private project · Details available on request</p>}
           </article>
         ))}
       </div>

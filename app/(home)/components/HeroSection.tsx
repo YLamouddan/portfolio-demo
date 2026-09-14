@@ -18,7 +18,7 @@ export default function HeroSection() {
 
         <p className=" md:w-96 text-lg text-gray-300">
           {
-            "I'm a web developer with a background in electrical engineering. I build web applications, automate repetitive tasks, and run my own self-hosted infrastructure."
+            "I build automation and web tools that solve everyday business problems, from handling incoming enquiries to reducing repetitive admin."
           }
         </p>
 
@@ -28,6 +28,7 @@ export default function HeroSection() {
         >
           <Title text="Contact Me 📭" />
         </Link>
+        <div><Link href="#projects" className="text-green-400 underline underline-offset-4">Explore my projects ↓</Link></div>
       </div>
 
       <div className="relative">

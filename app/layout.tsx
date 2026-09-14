@@ -8,17 +8,17 @@ const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://ylamouddan.com/"),
 
-  title: "Yassir Lamouddan | Development & Automation",
+  title: "Yassir Lamouddan | Business Automation & Web Development",
   authors: {
     name: "YLamouddan",
   },
 
   description:
-    "Web applications, automation, and self-hosted infrastructure by Yassir Lamouddan, a developer with a background in electrical engineering.",
+    "Business automation and web tools by Yassir Lamouddan. Explore working workflow demos, API integrations, and self-hosted projects.",
   openGraph: {
-    title: "Yassir Lamouddan | Development & Automation",
+    title: "Yassir Lamouddan | Business Automation & Web Development",
     description:
-      "Web applications, automation, and self-hosted infrastructure by Yassir Lamouddan, a developer with a background in electrical engineering.",
+      "Business automation and web tools by Yassir Lamouddan. Explore working workflow demos, API integrations, and self-hosted projects.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
     images: "/og.png",
