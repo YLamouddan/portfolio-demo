@@ -1,6 +1,5 @@
 import React from "react";
 import { SiGithub, SiLinkedin, SiX } from "react-icons/si";
-import { FaFilePdf } from "react-icons/fa6";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -21,17 +20,12 @@ export default function Navbar({ className }: { className?: string }) {
       label: "Twitter",
       icon: SiX,
     },
-    {
-      link: "./Yassir Lamouddan.pdf",
-      label: "Resume",
-      icon: FaFilePdf,
-    },
   ];
 
   return (
-    <nav className={cn(" py-10 flex justify-between items-center", className)}>
-      <h1 className="text-2xl font-bold underline underline-offset-8 decoration-green-500 -rotate-2">
-        YLmaouddan👷🏻‍♂️⚡️👨🏻‍💻
+    <nav className={cn(" py-8 flex flex-wrap gap-6 justify-between items-center", className)}>
+      <h1 className="text-lg sm:text-2xl font-bold underline underline-offset-8 decoration-green-500">
+        Yassir Lamouddan
       </h1>
       <div className="flex items-center gap-5">
         {socials.map((social, index) => {

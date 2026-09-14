@@ -1,112 +1,16 @@
-"use client";
-import React from "react";
-import Title from "./Title";
-import { HoverEffect } from "../../../components/ui/card-hover-effect";
-import {
-  FileIconsMatlab,
-  SimpleIconsAutocad,
-} from "../../../components/ui/icons";
-import {
-  SiReact,
-  SiNextdotjs,
-  SiTailwindcss,
-  SiMongodb,
-  SiTypescript,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiGit,
-  SiGithub,
-  SiPython,
-  SiArduino,
-  SiSupabase,
-} from "react-icons/si";
+const groups = [
+  { title: "Web development", tools: "React, Next.js, TypeScript, JavaScript, Tailwind CSS, HTML, CSS" },
+  { title: "Infrastructure & integrations", tools: "Docker Compose, Linux, Cloudflare, Traefik, Authentik, CouchDB, APIs, MCP" },
+  { title: "Engineering & tooling", tools: "Python, Git, GitHub, Arduino, MATLAB, AutoCAD" },
+];
 
 export default function Skills() {
-  const skills = [
-    {
-      title: "React",
-      text: "React",
-      icon: SiReact,
-    },
-    {
-      title: "NextJS",
-      text: "NextJS",
-      icon: SiNextdotjs,
-    },
-    {
-      title: "TailwindCSS",
-      text: "TailwindCSS",
-      icon: SiTailwindcss,
-    },
-    {
-      title: "Supabase",
-      text: "Supabase",
-      icon: SiSupabase,
-    },
-    {
-      title: "TypeScript",
-      text: "TypeScript",
-      icon: SiTypescript,
-    },
-    {
-      title: "HTML",
-      text: "HTML",
-      icon: SiHtml5,
-    },
-    {
-      title: "CSS",
-      text: "CSS",
-      icon: SiCss3,
-    },
-    {
-      title: "JavaScript",
-      text: "JavaScript",
-      icon: SiJavascript,
-    },
-    {
-      title: "Git",
-      text: "Git",
-      icon: SiGit,
-    },
-    {
-      title: "MongoDB",
-      text: "MongoDB",
-      icon: SiMongodb,
-    },
-    {
-      title: "GitHub",
-      text: "GitHub",
-      icon: SiGithub,
-    },
-    {
-      title: "Python",
-      text: "Python",
-      icon: SiPython,
-    },
-    {
-      title: "Arduino",
-      text: "Arduino",
-      icon: SiArduino,
-    },
-    {
-      title: "Matlab",
-      text: "Matlab",
-      icon: FileIconsMatlab,
-    },
-    {
-      title: "AutoCAD",
-      text: "AutoCAD",
-      icon: SimpleIconsAutocad,
-    },
-  ];
   return (
-    <div className="max-w-5xl mx-auto px-8">
-      <Title
-        text="Skills 🔪"
-        className="flex flex-col items-center justify-center transform -rotate-6"
-      />
-      <HoverEffect items={skills} />
-    </div>
+    <section aria-labelledby="skills-title" className="py-16 border-t border-white/10">
+      <h2 id="skills-title" className="text-3xl font-bold">Tools I work with</h2>
+      <div className="grid md:grid-cols-3 gap-8 mt-8">
+        {groups.map((group) => <div key={group.title}><h3 className="text-lg font-semibold text-green-400">{group.title}</h3><p className="mt-3 text-gray-300 leading-relaxed">{group.tools}</p></div>)}
+      </div>
+    </section>
   );
 }

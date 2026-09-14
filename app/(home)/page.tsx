@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Footer from "./components/Footer";
+import About from "./components/About";
 
 export default function page() {
   return (
@@ -17,8 +18,11 @@ export default function page() {
         <div className=" h-10 xl:h-31 bg-gradient-to-t from-black absolute -bottom-5 left-0 xl:bottom-0 w-full"></div>
       </div>
       <div className=" max-w-7xl mx-auto p-5 mt-20">
-        <Skills />
-        <Projects />
+        <main id="main-content">
+          <Projects />
+          <About />
+          <Skills />
+        </main>
         <Footer />
       </div>
     </div>
