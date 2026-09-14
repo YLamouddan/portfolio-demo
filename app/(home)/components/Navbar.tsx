@@ -24,9 +24,9 @@ export default function Navbar({ className }: { className?: string }) {
 
   return (
     <nav className={cn(" py-8 flex flex-wrap gap-6 justify-between items-center", className)}>
-      <h1 className="text-lg sm:text-2xl font-bold underline underline-offset-8 decoration-green-500">
+      <p className="text-lg sm:text-2xl font-bold underline underline-offset-8 decoration-green-500">
         Yassir Lamouddan
-      </h1>
+      </p>
       <div className="flex items-center gap-5">
         {socials.map((social, index) => {
           const Icon = social.icon;

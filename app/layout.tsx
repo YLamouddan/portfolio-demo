@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Business automation and web tools by Yassir Lamouddan. Explore working workflow demos, API integrations, and self-hosted projects.",
+    "Automation, custom software, and connected systems by Yassir Lamouddan. Explore sales operations, purchasing workflows, research automation, and cloud projects.",
   openGraph: {
     title: "Yassir Lamouddan | Business Automation & Web Development",
     description:
-      "Business automation and web tools by Yassir Lamouddan. Explore working workflow demos, API integrations, and self-hosted projects.",
+      "Automation, custom software, and connected systems by Yassir Lamouddan. Explore sales operations, purchasing workflows, research automation, and cloud projects.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
     images: "/og.png",
