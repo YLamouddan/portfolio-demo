@@ -1,56 +1,10 @@
-import { MovingBorderBtn } from "@/components/ui/moving-border";
 import Link from "next/link";
-import React from "react";
-import Title from "./Title";
-
 export default function HeroSection() {
-  return (
-    <div className=" min-h-[60vh] flex flex-col-reverse gap-14 lg:gap-0 lg:flex-row items-center justify-between">
-      <div className=" space-y-10 text  text-center lg:text-left">
-        <h1 className=" text-4xl lg:text-7xl font-bold">
-          {" "}
-          Nice to meet you! 👋
-          <br />{" "}
-          <span className=" underline underline-offset-8 decoration-green-500">
-            {"I'm Yassir."}
-          </span>
-        </h1>
-
-        <p className=" md:w-96 text-lg text-gray-300">
-          {
-            "I build automation and web tools that solve everyday business problems, from handling incoming enquiries to reducing repetitive admin."
-          }
-        </p>
-
-        <Link
-          href={"mailto:Ylamouddan@gmail.com"}
-          className="inline-block group "
-        >
-          <Title text="Contact Me 📭" />
-        </Link>
-        <div><Link href="#projects" className="text-green-400 underline underline-offset-4">Explore my projects ↓</Link></div>
-      </div>
-
-      <div className="relative">
-        <div className="w-72 h-72 space-y-3 -rotate-[30deg] relative">
-          <div className="flex gap-3 translate-x-8 ">
-            <div className="w-32 h-32 rounded-2xl bg-green-500"></div>
-            <div className="w-32 h-32 rounded-full bg-indigo-500"></div>
-          </div>
-
-          <div className="flex gap-3 -translate-x-8 ">
-            <div className="w-32 h-32 rounded-2xl bg-indigo-500 "></div>
-            <div className="w-32 h-32 rounded-full bg-green-500"></div>
-          </div>
-
-          <div className="glow absolute top-[40%] right-1/2 -z-10 "></div>
-        </div>
-        <div className="absolute bottom-5 sm:bottom-14 left-0 sm:-left-10">
-          <MovingBorderBtn borderRadius="0.5rem" className="p-3 font-semibold">
-            <p>Open to opportunities </p>
-          </MovingBorderBtn>
-        </div>
-      </div>
-    </div>
-  );
+  return <section className="py-16 sm:py-24 lg:py-28 max-w-5xl">
+    <p className="text-sm text-green-400 tracking-wide mb-6">Yassir Lamouddan · Engineering, software & automation</p>
+    <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold leading-[1.08] tracking-tight">I turn manual workflows<br className="hidden sm:block" /> into <span className="decoration-green-500 underline underline-offset-8">working systems.</span></h1>
+    <p className="mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-gray-300">When sales, operations, and software don’t talk to each other, people fill the gaps. I build the connections, workflows, and tools that let the work move forward.</p>
+    <div className="flex flex-wrap gap-4 mt-9"><Link href="#projects" className="demo-button inline-flex items-center gap-5">Explore my work <span aria-hidden="true">↗</span></Link><Link href="mailto:Ylamouddan@gmail.com" className="demo-secondary inline-flex items-center">Let’s talk</Link></div>
+    <p className="mt-8 text-sm text-gray-500">Business automation <span className="mx-3 text-green-600">/</span> Custom software <span className="mx-3 text-green-600">/</span> Connected systems</p>
+  </section>;
 }

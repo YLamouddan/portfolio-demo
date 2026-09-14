@@ -1,58 +1,46 @@
-# Yassir Lamouddan — Business automation portfolio
+# Yassir Lamouddan — Automation & software portfolio
 
-Personal portfolio at [ylamouddan.com](https://ylamouddan.com/), built with Next.js, React, TypeScript, and Tailwind CSS.
+Live at [ylamouddan.com](https://ylamouddan.com/). Built with Next.js, React, TypeScript, and Tailwind CSS.
 
-## Invoice follow-up planner
+## Featured projects
 
-Route: `/projects/invoice-follow-up`
+| Project | Route | Scope |
+| --- | --- | --- |
+| Revenue Desk | `/projects/revenue-desk` | Interactive sales pipeline, quote configuration, margin/discount approval gates, weighted forecast, quote export, and session activity log. |
+| Purchasing Control | `/projects/purchasing-control` | Interactive purchase-order / delivery / invoice matching, batch quantity checks, duplicate detection, price tolerance, gated approvals, and review export. |
+| Opportunity Intelligence | `/projects/opportunity-intelligence` | Public overview of an existing private multi-source opportunity research and scoring pipeline. |
+| Private Automation Platform | `/projects/automation-platform` | Public overview of existing private access, service isolation, integrations, and deployment work. |
 
-Turns an unpaid-invoice CSV into a prioritised follow-up plan and message drafts. Includes fictional sample data, a downloadable CSV template, and an export of the results.
+The interactive projects are independent prototypes using explicitly fictional sample data. They run in browser memory; a page reload resets changes. They do not send messages, make payments, or update external systems. All money values are illustrative, in EUR, and before tax. Stage probabilities are scenario assumptions, not performance claims or predictions.
 
-- Validates column names, email addresses, unique invoice IDs, amounts, and calendar dates.
-- Calculates invoice ageing using calendar days, independent of daylight-saving transitions.
-- Applies visible rules: 1–7 days overdue gets a gentle reminder, 8–30 days a follow-up, and 31+ days a personal review. Invoices due today or later get no draft.
-- Processes up to 500 unpaid invoices in one currency per import. Amounts use integer cents. Currency selection labels the supplied amounts; it does not convert them.
+### Revenue workflow
 
-CSV input:
+Select an opportunity, configure its scope and discount, review policy exceptions, then advance it through qualification, proposal, and won. Discounts above 10% or margins below 25% require simulated approval. Quote edits clear approval; editing a proposal returns it to qualification. Won quotes are locked. Adding the same sample enquiry twice is blocked by an email duplicate check.
 
-```csv
-customer,email,invoice,amount,due_date
-Sample Customer,accounts@example.com,DEMO-001,100.00,2026-01-15
-```
+The forecast separates won business from open pipeline. Open stage weights are New 15%, Qualified 40%, Proposal 70%. Quote calculations use integer cents. An empty quote cannot advance to proposal.
 
-The sample button generates four fictional invoices relative to the visitor's current date. Users must review payment status and drafts before taking action. No accounting or email API is connected.
+### Purchasing workflow
 
-## Lead intake & routing
+The five-record sample includes a clean invoice, a partial delivery, a price discrepancy, and two copies of one supplier invoice. Record the missing delivery, adjust price tolerance, or resolve the duplicate to see the approval gate respond. Quantity checks consider all invoices for the same order/item in the current batch, preventing split invoices from bypassing the check. Duplicate supplier numbers are compared without case or surrounding whitespace.
 
-Route: `/projects/lead-routing`
+Changes to invoice data, delivery evidence, or matching rules invalidate all session approvals conservatively. The activity log records changes and simulated approvals. This prototype does not reconcile against historical paid invoices, persist an audit log, or enforce real user roles.
 
-Turns an enquiry into a team assignment, priority, next action, and reply draft. Includes a fictional sample enquiry and a CSV export for mapping into a CRM.
+## Supporting demos
 
-- Service determines the responsible team.
-- Budget at or above the editable EUR threshold qualifies the enquiry. Qualified urgent enquiries are high priority; other qualified enquiries are normal priority.
-- Below-threshold enquiries require scoping, even when marked urgent.
-- The written brief is preserved in the export. Routing is deterministic and does not analyse the brief with AI.
+- `/projects/invoice-follow-up`: validated unpaid-invoice CSV import, calendar-day ageing, prioritisation, message drafts, and CSV export.
+- `/projects/lead-routing`: service/budget/urgency rules, team assignment, reply draft, and CRM-mappable CSV export.
 
-Both tools are independent portfolio demos, not client case studies. Data stays in page memory and is lost on reload. There is no browser storage, message sending, CRM connection, or background automation. CSV exports escape spreadsheet formula prefixes.
-
-## Personal integrations
-
-The homepage also describes self-hosted infrastructure, knowledge/task management, and an assistant environment built by configuring and integrating existing open-source tools. Those environments are private; their credentials, hostnames, and data are not included here.
+CSV exports neutralise spreadsheet formula prefixes. Supporting demos also run only in page memory and include fictional samples.
 
 ## Development
 
 ```sh
 npm ci
 npm run dev
+npm test
 npm run build
 ```
 
-Run the logic tests with Node.js 22.18+ or 24+:
+Tests require Node.js 22.18+ or 24+. The build checks compilation, lint, types, and static generation. Tests cover CSV validation, date arithmetic, routing, reconciliation exceptions, cumulative overbilling, approval gates, quote calculations, and forecast separation.
 
-```sh
-npm test
-```
-
-Tests cover CSV quoting, malformed data, date arithmetic, duplicate invoices, ageing thresholds, draft eligibility, spreadsheet-safe exports, and lead-routing boundaries. `npm run build` also checks TypeScript and lint rules.
-
-Vercel builds branches for preview and deploys `main` to the existing domain. No CV download or public CV file is included.
+Vercel previews branches and deploys `main` to the existing domain. There is no public CV file or CV link. Private hostnames, profiles, and credentials are excluded from this repository.

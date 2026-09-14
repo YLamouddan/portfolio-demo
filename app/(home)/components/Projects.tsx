@@ -1,67 +1,14 @@
 import Link from "next/link";
-
+import ProjectPreview from "@/components/project-preview";
 const projects = [
-  {
-    title: "Invoice follow-up planner",
-    category: "Business automation · Working demo",
-    description: "An unpaid-invoice spreadsheet can turn into a manual chase list. This tool validates CSV data, calculates overdue days, and puts the oldest invoices first.",
-    detail: "Try it with fictional invoices, review follow-up drafts, and export a prioritised plan. No emails are sent.",
-    tech: ["TypeScript", "React", "CSV processing", "Workflow rules"],
-    link: "/projects/invoice-follow-up",
-    linkLabel: "Try the invoice planner",
-  },
-  {
-    title: "Lead intake & routing",
-    category: "Business automation · Working demo",
-    description: "Incoming enquiries need a clear owner and next action. This tool routes them by service, budget, and urgency, with a visible explanation for each decision.",
-    detail: "Adjust the qualification rules, generate a reply draft, and export the enquiry for CRM import. Includes a fictional sample enquiry.",
-    tech: ["TypeScript", "React", "Form validation", "CSV export"],
-    link: "/projects/lead-routing",
-    linkLabel: "Try the lead router",
-  },
-  {
-    title: "Self-hosted infrastructure",
-    category: "Infrastructure · Personal project",
-    description: "A Docker Compose stack for running personal services on a VPS. It brings together a reverse proxy, identity management, and tunnel-based access, with separate networks for private services.",
-    detail: "The work includes service configuration, access controls, deployment scripts, and operational documentation.",
-    tech: ["Docker Compose", "Traefik", "Cloudflare", "Authentik", "Linux"],
-  },
-  {
-    title: "Knowledge & task management",
-    category: "Integrations · Personal project",
-    description: "A self-hosted Obsidian workspace with task management and bidirectional note sync between the server and a local device.",
-    detail: "TaskNotes exposes task operations through an API and MCP, providing a foundation for automated capture and task workflows.",
-    tech: ["Obsidian", "CouchDB", "TaskNotes", "MCP", "Docker"],
-  },
-  {
-    title: "Private AI assistant environment",
-    category: "AI tooling · Personal integration",
-    description: "A privately hosted Hermes assistant with a model gateway and separate container networks for provider access and internal communication.",
-    detail: "My work focuses on deploying and integrating the existing tools, configuring private access, and maintaining the environment.",
-    tech: ["Hermes", "OmniRoute", "Docker", "Tailscale", "Linux"],
-  },
+  { title: "Revenue Desk", category: "Sales operations", kind: "revenue" as const, description: "From the first enquiry to an approved proposal. A connected workspace for pipeline management, pricing, and the decisions that move a deal forward.", capabilities: "Quote builder · Approval rules · Revenue forecast", href: "/projects/revenue-desk", action: "Explore the workspace", status: "Working prototype" },
+  { title: "Purchasing Control", category: "Finance & operations", kind: "purchasing" as const, description: "Catch the mismatch before approving the invoice. Match purchase orders, deliveries, and supplier bills, with a clear path for resolving exceptions.", capabilities: "Three-way matching · Exception review · Approval history", href: "/projects/purchasing-control", action: "Explore the workspace", status: "Working prototype" },
+  { title: "Opportunity Intelligence", category: "Research automation", kind: "research" as const, description: "A scheduled research pipeline that brings scattered opportunities into one place, checks relevance, and produces a shortlist worth acting on.", capabilities: "Multi-source research · Ranking · Duplicate detection", href: "/projects/opportunity-intelligence", action: "View project", status: "Private project" },
+  { title: "Private Automation Platform", category: "Cloud & infrastructure", kind: "platform" as const, description: "The foundation for running connected applications and AI workflows, with controlled access, isolated services, and repeatable deployment.", capabilities: "Access controls · Service isolation · Operations", href: "/projects/automation-platform", action: "View project", status: "Private project" },
 ];
-
 export default function Projects() {
-  return (
-    <section id="projects" aria-labelledby="projects-title" className="py-16 scroll-mt-8">
-      <p className="text-sm text-green-400 mb-3">Selected work</p>
-      <h2 id="projects-title" className="text-3xl sm:text-4xl font-bold">Projects</h2>
-      <p className="mt-4 max-w-2xl text-gray-300">Try the business workflow demos, then explore the personal infrastructure and integrations behind my work. The demos use fictional sample data and are independent portfolio projects.</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 mt-10">
-        {projects.map((project) => (
-          <article key={project.title} className="rounded-2xl border border-white/15 bg-zinc-950 p-6 flex flex-col">
-            <p className="text-sm text-green-400">{project.category}</p>
-            <h3 className="text-2xl font-semibold mt-4">{project.title}</h3>
-            <p className="text-gray-300 leading-relaxed mt-4">{project.description}</p>
-            <p className="text-gray-400 leading-relaxed mt-4">{project.detail}</p>
-            <ul aria-label="Technologies" className="flex flex-wrap gap-2 mt-6 mb-6">
-              {project.tech.map((tech) => <li key={tech} className="text-xs rounded-full border border-white/15 px-3 py-1.5 text-gray-300">{tech}</li>)}
-            </ul>
-            {project.link ? <Link href={project.link} className="mt-auto text-green-400 underline underline-offset-4">{project.linkLabel} <span aria-hidden="true">→</span></Link> : <p className="mt-auto text-sm text-gray-400">Private project · Details available on request</p>}
-          </article>
-        ))}
-      </div>
-    </section>
-  );
+  return <section id="projects" aria-labelledby="projects-title" className="py-14 scroll-mt-8"><div className="mb-10"><p className="text-sm text-green-400 mb-3">Selected work</p><h2 id="projects-title" className="text-3xl sm:text-4xl font-semibold">Built around the whole workflow.</h2><p className="mt-4 text-gray-400 max-w-2xl">Business software, research automation, and the infrastructure behind them.</p></div>
+    <div className="grid md:grid-cols-2 gap-7">{projects.map((project) => <article key={project.title} className="project-feature group"><Link href={project.href} className="block" aria-label={`Explore ${project.title}`}><ProjectPreview kind={project.kind} /></Link><div className="p-6 sm:p-7"><div className="flex flex-wrap items-center justify-between gap-2 text-xs mb-4"><span className="text-green-400">{project.category}</span><span className="text-gray-500">{project.status}</span></div><h3 className="text-2xl font-semibold">{project.title}</h3><p className="text-gray-400 leading-relaxed mt-3">{project.description}</p><p className="text-xs text-gray-500 mt-5">{project.capabilities}</p><Link href={project.href} className="inline-flex gap-5 items-center text-green-400 text-sm mt-6">{project.action}<span aria-hidden="true">↗</span></Link></div></article>)}</div>
+    <div className="mt-8 rounded-xl border border-white/10 p-5 sm:p-6 flex flex-wrap justify-between items-center gap-5"><div><h3 className="font-medium">More hands-on projects</h3><p className="text-sm text-gray-500 mt-1">Smaller tools for everyday business tasks.</p></div><div className="flex flex-wrap gap-6 text-sm text-green-400"><Link href="/projects/invoice-follow-up">Invoice follow-up ↗</Link><Link href="/projects/lead-routing">Lead intake & routing ↗</Link></div></div>
+  </section>;
 }
