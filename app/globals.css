@@ -88,3 +88,13 @@ a:focus-visible { outline: 2px solid #4ade80; outline-offset: 6px; border-radius
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+
+.demo-panel { border: 1px solid #ffffff26; border-radius: 1rem; background: #09090b; padding: clamp(1rem, 3vw, 1.5rem); min-width: 0; }
+.demo-input { display: block; width: 100%; border: 1px solid #52525b; border-radius: .5rem; padding: .75rem; background: #18181b; color: #fafafa; color-scheme: dark; }
+.demo-button, .demo-secondary { border-radius: .5rem; padding: .75rem 1rem; min-height: 44px; font-weight: 600; }
+.demo-button { background: #4ade80; color: #052e16; }
+.demo-button:hover { background: #86efac; }
+.demo-secondary { border: 1px solid #52525b; color: #e4e4e7; }
+.demo-secondary:hover { background: #27272a; }
+.demo-page :is(button, input, select, textarea, summary):focus-visible { outline: 2px solid #4ade80; outline-offset: 4px; }
+.demo-page { overflow-wrap: anywhere; }
