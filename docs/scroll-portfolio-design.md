@@ -1,29 +1,22 @@
-# Client portfolio revision — 2026-10-26
+# Flagship showcase revision — 2026-10-26
 
-## Current brief
-The owner rejected the original subtle assembly, forced light appearance, technical terminology and engineering-specific projects. The new draft focuses on acquiring clients through recognisable business examples while retaining personal engineering background in About. Keep everything private on the existing Tailscale preview.
+## Owner direction
+The owner likes the enquiry/quote/booking scroll concept but finds it choppy. They rejected small feature demos and selected both advanced AI automation and polished interactive web apps. Replace visible System menus with binary controls: motion On/Off, appearance sun/moon toggle. All work remains on the private Tailscale preview. iCloud routing remains unchanged.
 
-## Scroll behaviour
-Three enquiry, quote and booking panels translate and rotate into a connected business workflow. Headlines move and change with scroll progress. Native scrolling stays intact. The former short-mobile CSS disabled the sticky scene below 650px height; that restriction is removed. The installed Framer Motion 11 reduced-motion hook samples a value without subscribing React state to later preference changes, so a local matchMedia listener now updates the control live. System reduced-motion remains the default policy, with an explicit persistent System/On/Off motion selector so a visitor can choose the experience. Short screens compress the composition without removing the scroll range.
+## Scroll diagnosis and implementation
+The previous opening followed raw scrollYProgress directly. A bounded headless Chromium probe produced 8 changing artwork frames for 8 coarse wheel events, with no >34ms frames; this demonstrates discrete input stepping rather than proving a slow main thread. The new version drives all scene transformations and headline transitions from one damped useSpring value (stiffness 135, damping 30, mass .45), retaining native page scrolling. The spring settles instead of oscillating; no React scroll-state loop is used. Active moving layers receive scoped will-change and backface visibility; static cards avoid a large painted shadow. Repeatable metrics are recorded in ignored review/flagships/ by scripts/profile-scroll.cjs. The final same-browser probe recorded 94 changing artwork frames versus 8 before, 87 changes between wheel events, no frames over 34 ms, and zero layout recalculations in the sampled interval. Server/browser numbers do not guarantee performance on the owner's device.
 
-## Appearance
-System, Dark and Light through the existing next-themes provider. A new portfolio-specific storage key avoids stale theme choices from the previous draft. System follows prefers-color-scheme and subsequent browser changes. Semantic surface/text/accent tokens style the homepage, illustrations and new demo pages. Locally hosted Manrope is retained.
+Motion has a persistent On/Off switch. A first visitor starts Off when the OS requests reduced motion, otherwise On; a manual setting wins afterward. There is no visible System choice. Appearance defaults to dark with a persistent sun/moon switch and no System option. The Material Symbols Outlined light_mode/dark_mode SVG paths are from Google's official repository, self-hosted with Apache-2.0 licensing under public/icons/material/. No emojis or remote icon font.
 
-## Client-facing projects
-1. Enquiry to quote: configurable services, whole-cent prices, discounts and a proposal state cleared when scope changes.
-2. Book without the back-and-forth: availability checks against full appointment duration, sample reservations and overlapping-time rejection.
-3. A calmer client portal: visible progress, change requests and approvals tied to deliverable versions.
-4. A helpful support desk: suggested replies from authored sample shop policies, source labels and human handover for unsupported or mixed-policy queries.
+## Three product showcases
+- Flow Studio: editable/draggable node layout (with keyboard movement), sample enquiries and rules, intent adapter, budget branching, response preview, human approval, connector failure injection, bounded retries, replay protection, payload inspection and workflow/run JSON export. The AI adapter is explicitly simulated; the local CRM outbox is a browser fixture, not a live integration.
+- Forma: original desk/chair/accessory meshes, perspective projection and shaded 3D faces rendered locally into Canvas 2D; drag/keyboard camera, zoom/reset, dimensions, finishes, accessories, itemised pricing, room-clearance rules, browser saving and JSON specification export. This is actual 3D geometry rendered in software, not a loaded product photo or WebGL claim. Prices/inventory are illustrative; no commerce backend.
+- Signal: source-linked fictional opportunity data, adjustable score factors, filters/search, score contribution breakdown, evidence excerpts, shortlist, validated bounded JSON import and shortlist export. Ranking is deterministic, not an AI prediction, and no live research service is connected.
 
-All are newly built independent browser demos with fictional data. No invented client work, performance figures, AI integration, email delivery, shared calendar or durable login/storage is claimed. Superseded technical demos remain recoverable in local checkpoint da4efb1; legacy /projects URLs are retained.
+Each route opens the application prominently, followed by concise rationale and explicit implementation boundaries. The homepage uses coherent previews of the three apps. The older client widgets remain recoverable in checkpoint 75a4d4f; the original /projects routes are retained.
 
-## Email boundary
-Mailu already contains me@ylamouddan.com as an alias delivering to hello@ylamouddan.com. Public MX records still point to iCloud. The owner explicitly chose to keep iCloud routing for now on 2026-10-26. Do not change MX, create a conflicting mailbox, or present Mailu alias existence as proof of external delivery. Current working Gmail contact stays in the private draft until the desired personal address is confirmed at the actual receiving provider. No mailbox/DNS changes or email tests that send messages were performed.
+## Validation
+Focused domain tests: tests/showcase-models.test.mjs (branching/approval, retries, price/clearance, ranking/filtering/deduplication, import validation). Browser script: scripts/verify-flagships.cjs (icon toggles/persistence, binary motion and reduced-motion initialisation, interpolation/settling, three project navigation, actual app behaviours and mobile containment). Receipts/screenshots: ignored review/flagships/. These checks are not full accessibility certification or evidence of production integrations.
 
-## Skills and verification
-Frontend-design and UI/UX Pro Max guidance applied. A theme search returned an unrelated result and was discarded; next-themes official documentation supplied preference handling instead. Motion official useScroll/accessibility documentation supplied the scroll and motion-override approach.
-
-Focused logic tests live in tests/client-tools.test.mjs. Browser checks live in scripts/verify-client-portfolio.cjs and use actual mouse wheel scrolling, short mobile viewports, reduced-motion and explicit overrides, theme persistence and live system changes, new demo interactions, mobile overflow and page-error checks. Results/screenshots go to ignored review/client-revision/. This does not constitute a full accessibility audit.
-
-## Operations
-Local checkpoint branch checkpoint/portfolio-before-client-revision-20261026 at da4efb1 preserves the previous exact source state. Feature branch feat/client-portfolio-theme-scroll-20261026. No branch push because the owner prohibits publication and Vercel creates branch previews. Only restart the existing private preview after a passing build and browser checks; keep its Tailscale address binding and other services unchanged.
+## Safe operations
+Checkpoint 75a4d4f on checkpoint/client-demos-before-flagships-20261026 preserves exact prior draft; feature branch feat/flagship-showcases-smooth-scroll-20261026. No pushes: branch previews/publication are not authorised. Rebuild then restart only portfolio-tailscale-preview-20261025.service, retaining its 100.112.32.62:3418 binding. Mailu me@ alias exists, but incoming domain MX still routes to iCloud by the owner's explicit decision; current Gmail contact stays until the desired address is verified at its actual receiving provider.

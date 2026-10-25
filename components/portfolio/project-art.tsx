@@ -1,6 +1,8 @@
 import { ArrowRight, CalendarDays, Check, FileText, MessageSquare } from "lucide-react";
-export type ProjectKind="quotes"|"booking"|"portal"|"support";
+import ShowcasePreview from "@/components/showcases/showcase-preview";
+export type ProjectKind="flow-studio"|"forma"|"signal"|"quotes"|"booking"|"portal"|"support";
 export default function ProjectArt({kind}:{kind:ProjectKind}) {
+ if(kind==="flow-studio"||kind==="forma"||kind==="signal")return <ShowcasePreview kind={kind}/>;
  return <div className={`work-art business-art art-${kind}`} aria-hidden="true"><div className="art-caption">{({quotes:"ONE ENQUIRY. A CLEAR NEXT STEP.",booking:"GOODBYE, SCHEDULING EMAILS.",portal:"EVERYONE ON THE SAME PAGE.",support:"A FASTER REPLY. A REAL SOURCE."})[kind]}</div>
  {kind==="quotes"&&<div className="preview-sheet quote-sheet"><div className="preview-sheet-heading"><FileText size={20}/><span>Proposal / Sample Studio</span></div><h4>Your next website.</h4><div className="preview-line"><span>Business website</span><strong>€1,200</strong></div><div className="preview-line"><span>Appointment booking</span><strong>€450</strong></div><div className="preview-total"><span>Project total</span><strong>€1,650</strong></div><div className="preview-action">Ready for review <ArrowRight size={14}/></div></div>}
  {kind==="booking"&&<div className="preview-sheet booking-sheet"><div className="preview-sheet-heading"><CalendarDays size={20}/><span>Pick a time. Make it yours.</span></div><h4>Discovery call</h4><p>30 minutes · Sample Tuesday</p><div className="preview-times">{["09:00","09:30","11:00","11:30","12:00","12:30"].map((t,i)=><span className={i===2?"time-chosen":""} key={t}>{t}</span>)}</div><div className="preview-action"><Check size={14}/>11:00 · You’re booked</div></div>}

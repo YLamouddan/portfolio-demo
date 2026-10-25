@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import "./portfolio.css";
+import "./showcases.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
 const manrope = localFont({ src: "../public/fonts/manrope.ttf", display: "swap", variable: "--font-manrope" });
@@ -15,11 +16,11 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Websites and practical business tools by Yassir Lamouddan. Explore working demos for quotes, appointment booking, client portals and customer support.",
+    "Software and automation by Yassir Lamouddan. Explore a visual workflow studio, a live 3D product configurator and an evidence-driven intelligence workspace.",
   openGraph: {
     title: "Yassir Lamouddan | Websites & Business Automation",
     description:
-      "Websites, booking tools, client portals and practical automation for growing businesses.",
+      "Interactive product experiences, workflow architecture and decision tools for ambitious businesses.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
     images: [],
@@ -38,9 +39,9 @@ export default function RootLayout({
       <body className={`${manrope.className} ${manrope.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          storageKey="portfolio-appearance-v2"
-          enableSystem
+          defaultTheme="dark"
+          storageKey="portfolio-appearance-v3"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

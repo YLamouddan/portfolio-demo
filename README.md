@@ -1,28 +1,27 @@
 # Yassir Lamouddan — Engineering, software & automation
 
-## Private client-focused redesign · October 2026
+## Private flagship showcase draft · October 2026
 
-This branch is a private review draft: no push, public deployment, or production-domain update. The original artwork and first draft remain in Git history and local checkpoints.
+No branch push, public deployment or production-domain change has been made. The current draft features three independent product prototypes with real browser interactions and explicit integration boundaries.
 
-| Demo | Route | What a visitor can try |
+| Product | Route | Implemented experience |
 | --- | --- | --- |
-| Enquiry to quote | `/work/quotes` | Select services, calculate a price and prepare a proposal; scope changes clear stale proposals. |
-| Appointment booking | `/work/booking` | Choose a service and free time; sample bookings block overlapping appointments. |
-| Client portal | `/work/portal` | Review a deliverable, request changes and approve a specific version. |
-| Support desk | `/work/support` | Prepare a sourced policy-based reply; unknown or mixed-policy questions go to a person. |
+| Flow Studio | `/work/flow-studio` | Editable workflow graph, branch policies, human approval, failure injection, retry budget, replay protection and run inspection/export. AI/CRM connectors are simulated. |
+| Forma | `/work/forma` | Original 3D geometry and local perspective renderer, orbit/zoom, dimensions/materials/accessories, price and room-clearance rules, saved configuration and specification export. |
+| Signal | `/work/signal` | Adjustable rankings, source excerpts, filters, shortlist, validated local JSON import and export. Fictional data; deterministic analysis. |
 
-All are new independent browser demos with fictional data, not past client engagements. No emails are sent, appointments placed on real calendars, accounts created, refunds issued, or shared records saved. Support replies use explicit keyword rules, not an AI model.
-
-The scroll-linked opening moves enquiry/quote/booking panels into one workflow. It keeps native scrolling and short-mobile animation, respects system reduced-motion by default, and provides a persistent System/On/Off motion control. Appearance follows the system with manual Dark/Light overrides. Manrope is hosted locally. Older `/projects/` URLs are retained but are not featured.
+The homepage preserves the scroll-linked business workflow but interpolates wheel input through one damped spring. Native scrolling remains intact. A binary animation switch remembers On/Off; first-visit reduced-motion preference is respected. Dark/light appearance uses a binary sun/moon toggle with Google Material Symbols SVGs hosted locally under Apache-2.0. There are no System menus or external icon fonts.
 
 ```sh
-node --test tests/client-tools.test.mjs
+node --test tests/showcase-models.test.mjs
 npm run build
-# Uses an existing Playwright installation and Chromium; owns a temporary loopback server.
-node scripts/verify-client-portfolio.cjs
+# Uses an existing Playwright/Chromium; starts/stops its own loopback server.
+node scripts/verify-flagships.cjs
 ```
 
-Set `PORTFOLIO_PLAYWRIGHT_PATH` and `PORTFOLIO_BROWSER` when the browser tooling is outside the default installation. Ignored `review/client-revision/` contains browser screenshots and the verification receipt. No comprehensive accessibility certification is implied by these focused checks.
+Set `PORTFOLIO_PLAYWRIGHT_PATH` and `PORTFOLIO_BROWSER` for non-default tool locations. `scripts/profile-scroll.cjs` records a bounded before/after wheel-input probe against the private preview; its metrics describe the test browser, not every visitor's device. Ignored `review/flagships/` contains screenshots and receipts. Earlier browser scripts target archived draft states and are not the active verification path.
+
+No live messages, model calls, CRM changes, orders or payments are triggered. No invented client work or business outcomes are claimed. The original artwork and rejected drafts remain in Git history/local checkpoints. Legacy `/projects/` URLs remain available.
 
 ## Existing production version and legacy demos
 

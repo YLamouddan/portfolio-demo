@@ -1,26 +1,26 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform, type MotionValue } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Check, CalendarDays, MessageSquare, FileText } from "lucide-react";
-type MotionPreference="system"|"on"|"off";
 function WorkflowCard({progress,from,end,rotate,disabled,className,children}:{progress:MotionValue<number>;from:[number,number];end:[number,number];rotate:number;disabled:boolean;className:string;children:React.ReactNode}) {
   const x=useTransform(progress,[0,.68],[from[0],end[0]]),y=useTransform(progress,[0,.68],[from[1],end[1]]),turn=useTransform(progress,[0,.68],[rotate,0]),scale=useTransform(progress,[0,.68],[.9,1]);
   return <motion.div className={`workflow-card ${className}`} style={{x:disabled?end[0]:x,y:disabled?end[1]:y,rotate:disabled?0:turn,scale:disabled?1:scale}}>{children}</motion.div>;
 }
 export default function ScrollIntro() {
   const section=useRef<HTMLElement>(null);
-  const [systemReduced,setSystemReduced]=useState(false),[ready,setReady]=useState(false);
-  const [preference,setPreference]=useState<MotionPreference>("system");
+  const [enabled,setEnabled]=useState(true),[ready,setReady]=useState(false);
   useEffect(()=>{
-    const media=window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update=()=>setSystemReduced(media.matches);
-    update();media.addEventListener("change",update);
-    try{const saved=localStorage.getItem("portfolio-motion");if(saved==="system"||saved==="on"||saved==="off")setPreference(saved);}catch{}
-    setReady(true);
-    return()=>media.removeEventListener("change",update);
+    let stored:string|null=null;
+    try{stored=localStorage.getItem("portfolio-motion");}catch{}
+    const initial=stored==="on"?true:stored==="off"?false:!window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setEnabled(initial);setReady(true);
+    try{localStorage.setItem("portfolio-motion",initial?"on":"off");}catch{}
   },[]);
-  const disabled=preference==="off"||(preference==="system"&&!!systemReduced);
-  const {scrollYProgress:progress}=useScroll({target:section,offset:["start start","end end"]});
+  const disabled=!enabled;
+  const {scrollYProgress:rawProgress}=useScroll({target:section,offset:["start start","end end"]});
+  // Smooth discontinuous wheel/keyboard input without replacing native page scrolling.
+  const progress=useSpring(rawProgress,{stiffness:135,damping:30,mass:.45,restDelta:.0001,restSpeed:.001});
+  useEffect(()=>{if(ready)progress.jump(rawProgress.get());},[ready,enabled,progress,rawProgress]);
   const first=useTransform(progress,[0,.17,.3],[1,1,0]),middle=useTransform(progress,[.23,.36,.54,.65],[0,1,1,0]),last=useTransform(progress,[.58,.76],[0,1]);
   const firstY=useTransform(progress,[0,.17,.3],[0,0,-70]),middleY=useTransform(progress,[.23,.36,.54,.65],[70,0,0,-70]),lastY=useTransform(progress,[.58,.76],[70,0]);
   const panelOpacity=useTransform(progress,[.25,.65],[0,1]),panelScale=useTransform(progress,[.25,.7],[.7,1]);
@@ -36,7 +36,7 @@ export default function ScrollIntro() {
       <WorkflowCard progress={progress} from={[145,-85]} end={[0,0]} rotate={16} disabled={disabled} className="card-quote"><span className="workflow-card-step">02 / Quote</span><FileText size={24} strokeWidth={1.4}/><strong>A clear proposal.</strong><p>Scope, price and<br/>next steps. Together.</p><span className="workflow-card-state">Proposal accepted <Check size={12}/></span></WorkflowCard>
       <WorkflowCard progress={progress} from={[25,130]} end={[175,0]} rotate={-10} disabled={disabled} className="card-booking"><span className="workflow-card-step">03 / Booking</span><CalendarDays size={24} strokeWidth={1.4}/><strong>Time to get started.</strong><p>The right time.<br/>No email tennis.</p><span className="workflow-card-state">You’re booked <Check size={12}/></span></WorkflowCard>
     </div><span className="scene-sample">Illustrative workflow · scroll to connect</span></div></div>
-    <div className="intro-footer page-width"><label className="motion-control"><span>Scroll animation</span><select aria-label="Scroll animation" value={preference} onChange={e=>{const value=e.target.value as MotionPreference;setPreference(value);try{localStorage.setItem("portfolio-motion",value);}catch{}}}><option value="system">System</option><option value="on">On</option><option value="off">Off</option></select></label><span className="scroll-instruction"><ArrowDown size={15} aria-hidden="true"/>{disabled?"Reduced motion is active":"Scroll and watch it come together"}</span><a href="#work">Skip intro <ArrowDown size={14} aria-hidden="true"/></a><div className="intro-progress"><motion.div style={{scaleX:disabled?1:progress}}/></div></div>
+    <div className="intro-footer page-width"><div className="motion-control"><span>Scroll animation</span><button type="button" role="switch" aria-label="Scroll animation" aria-checked={enabled} className="motion-switch" onClick={()=>{const next=!enabled;setEnabled(next);try{localStorage.setItem("portfolio-motion",next?"on":"off");}catch{}}}><span className="motion-switch-track"><span className="motion-switch-thumb"/></span><span className="motion-switch-value">{enabled?"On":"Off"}</span></button></div><span className="scroll-instruction"><ArrowDown size={15} aria-hidden="true"/>{disabled?"Animation is off":"Scroll and watch it come together"}</span><a href="#work">Skip intro <ArrowDown size={14} aria-hidden="true"/></a><div className="intro-progress"><motion.div style={{scaleX:disabled?1:progress}}/></div></div>
     </div>
   </section>;
 }
