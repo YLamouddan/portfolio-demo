@@ -1,30 +1,23 @@
-import React from "react";
-import Navbar from "./components/Navbar";
-import HeroSection from "./components/HeroSection";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Footer from "./components/Footer";
-import About from "./components/About";
+import Link from "next/link";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
+import { SiPython, SiReact, SiTypescript, SiDocker, SiLinux, SiGit } from "react-icons/si";
+import ScrollIntro from "@/components/portfolio/scroll-intro";
+import ProjectArt from "@/components/portfolio/project-art";
+import { portfolioProjects } from "@/lib/portfolio-projects";
 
-export default function page() {
-  return (
-    <div className="min-h-screen bg-black overflow-hidden">
-      <div className=" dark:bg-black bg-white  dark:bg-grid-white/[0.06] bg-grid-black/[0.3] relative">
-        <div className="max-w-7xl mx-auto p-5 ">
-          <Navbar />
-
-          <HeroSection />
-        </div>
-        <div className=" h-10 xl:h-31 bg-gradient-to-t from-black absolute -bottom-5 left-0 xl:bottom-0 w-full"></div>
-      </div>
-      <div className=" max-w-7xl mx-auto p-5 mt-20">
-        <main id="main-content">
-          <Projects />
-          <About />
-          <Skills />
-        </main>
-        <Footer />
-      </div>
-    </div>
-  );
+export default function Page() {
+  return <div className="portfolio">
+    <a className="skip-navigation" href="#main-content">Skip to content</a>
+    <header className="portfolio-header"><nav className="page-width" aria-label="Main navigation"><Link href="/" className="wordmark">Yassir Lamouddan<span className="wordmark-dot">.</span></Link><div className="nav-links"><a href="#work">Work</a><a href="#about">About</a><a href="#contact" className="nav-contact">Let’s talk <ArrowUpRight size={15} aria-hidden="true" /></a></div></nav></header>
+    <main id="main-content">
+      <ScrollIntro />
+      <section id="work" className="work-section page-width" aria-labelledby="work-heading">
+        <div className="section-heading"><div><p className="eyebrow">Selected explorations</p><h2 id="work-heading">Less busywork.<br />More possibility.</h2></div><p>Four independent prototypes at the intersection of engineering, software, and automation. Open one. Change an input. See the reasoning.</p></div>
+        <div className="work-list">{portfolioProjects.map(project=><article key={project.slug} className="work-row"><Link href={`/work/${project.slug}`} className="work-art-link" aria-label={`Explore ${project.title}`}><ProjectArt kind={project.slug} /><span className="art-open"><ArrowUpRight size={22} aria-hidden="true" /></span></Link><div className="work-copy"><div className="work-category">{project.category}<span>Interactive prototype</span></div><h3>{project.title}</h3><p className="work-headline">{project.headline}</p><p className="work-summary">{project.summary}</p><ul className="project-tags" aria-label={`${project.title} techniques`}>{project.tools.map(tool=><li key={tool}>{tool}</li>)}</ul><Link className="text-link" href={`/work/${project.slug}`}>Explore the project <ArrowRight size={17} aria-hidden="true" /></Link></div></article>)}</div>
+      </section>
+      <section id="about" className="about-section" aria-labelledby="about-heading"><div className="page-width about-grid"><div><p className="eyebrow">A little context</p><h2 id="about-heading">An engineer’s eye.<br />A builder’s instinct.</h2></div><div className="about-copy"><p>I’m Yassir, an electrical engineer working across software, automation, and process improvement.</p><p>I’m interested in the place where a physical process meets a digital one: finding a fault, making a handover clearer, or getting disconnected tools to work together.</p><p>My approach is practical. Understand the process, make the reasoning visible, and account for what happens when something goes wrong.</p><div className="tool-strip" aria-label="Tools I work with">{[{name:"Python",Icon:SiPython},{name:"React",Icon:SiReact},{name:"TypeScript",Icon:SiTypescript},{name:"Docker",Icon:SiDocker},{name:"Linux",Icon:SiLinux},{name:"Git",Icon:SiGit}].map(({name,Icon})=><span key={name}><Icon aria-hidden="true" />{name}</span>)}</div></div></div></section>
+      <section id="contact" className="contact-section page-width" aria-labelledby="contact-heading"><p className="eyebrow">Jobs, projects & good problems</p><div className="contact-grid"><h2 id="contact-heading">What could we<br /><span>make work?</span></h2><div><p>Looking for an engineer who can connect the process and the software? I’d like to hear what you’re working on.</p><a className="primary-link" href="mailto:Ylamouddan@gmail.com">Discuss an opportunity <ArrowUpRight size={20} aria-hidden="true" /></a><a className="contact-email" href="mailto:Ylamouddan@gmail.com">Ylamouddan@gmail.com</a></div></div></section>
+    </main>
+    <footer className="portfolio-footer page-width"><span>Yassir Lamouddan · Engineering, connected.</span><div><a href="https://linkedin.com/in/YLamouddan">LinkedIn <ArrowUpRight size={13} aria-hidden="true" /></a><a href="https://github.com/YLamouddan">GitHub <ArrowUpRight size={13} aria-hidden="true" /></a><a href="#main-content">Back to top ↑</a></div></footer>
+  </div>;
 }

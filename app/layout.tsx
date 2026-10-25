@@ -1,35 +1,32 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import "./portfolio.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const manrope = localFont({ src: "../public/fonts/manrope.ttf", display: "swap", variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ylamouddan.com/"),
 
-  title: "Yassir Lamouddan | Business Automation & Web Development",
+  title: "Yassir Lamouddan | Engineering, Software & Automation",
   authors: {
     name: "YLamouddan",
   },
 
   description:
-    "Automation, custom software, and connected systems by Yassir Lamouddan. Explore sales operations, purchasing workflows, research automation, and cloud projects.",
+    "Electrical engineering meets software and automation. Explore independent interactive prototypes in diagnostics, energy scheduling, workflow reliability and document retrieval.",
   openGraph: {
-    title: "Yassir Lamouddan | Business Automation & Web Development",
+    title: "Yassir Lamouddan | Engineering, Software & Automation",
     description:
-      "Automation, custom software, and connected systems by Yassir Lamouddan. Explore sales operations, purchasing workflows, research automation, and cloud projects.",
+      "Electrical engineering meets software and automation. Explore independent interactive prototypes and the reasoning behind them.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
-    images: "/og.png",
+    images: [],
     type: "website",
   },
   keywords: ["Yassir Lamouddan", "web development", "automation", "self-hosting"],
 };
-//export const metadata: Metadata = {
-//title: "Yassir Lamouddan | Development & Automation",
-//description: "Yassir Lamouddan's Personal Portfolio",
-//};
 
 export default function RootLayout({
   children,
@@ -38,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={spaceGrotesk.className}>
+      <body className={`${manrope.className} ${manrope.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

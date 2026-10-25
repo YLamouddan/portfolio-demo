@@ -1,4 +1,32 @@
-# Yassir Lamouddan — Automation & software portfolio
+# Yassir Lamouddan — Engineering, software & automation
+
+## Local redesign draft · October 2026
+
+This branch replaces the homepage with a scroll-linked component assembly and four newly built independent prototypes. It is a review draft: no branch push, public deployment, or production domain update has been performed. The original artwork remains in Git history and its existing private backup.
+
+| Project | Route | Implemented scope |
+| --- | --- | --- |
+| Bench | `/work/bench` | Inspectable symptom matching, tied hypotheses, missing evidence and next-test guidance. |
+| Loadshift | `/work/loadshift` | Exhaustive load scheduling, hourly demand constraints, energy conservation and infeasibility reporting. |
+| Relay | `/work/relay` | Human review boundary, injected outages, three-attempt retry budget and replay deduplication. |
+| Fieldnotes | `/work/fieldnotes` | Exact keyword passage retrieval, source identifiers, query coverage and unsupported-query abstention. |
+
+All four are independent browser prototypes with fictional data, not past client engagements. Fieldnotes does not use an LLM or embeddings. Relay is an in-memory simulation, not a persistent queue or authenticated service. Project pages state their individual limits.
+
+The opening uses the existing Framer Motion dependency, native scrolling, local Manrope font assets and a reduced-motion final state. Older project URLs are retained below but removed from the featured homepage.
+
+Validation: seven new logic tests, production build and 11 browser checks passed. Browser checks cover scroll changes, keyboard skip navigation, mobile overflow, four demo interactions, unknown-route 404, reduced motion and basic no-JavaScript content. This is not a comprehensive accessibility audit. Ignored `review/` contains local screenshots and the verification receipt.
+
+```sh
+node --test tests/portfolio-lab.test.mjs
+npm run build
+# Uses an existing Playwright installation and Chromium; starts/stops a loopback server.
+node scripts/verify-portfolio-local.cjs
+```
+
+If Playwright/Chromium are outside the default installation, set `PORTFOLIO_PLAYWRIGHT_PATH` and `PORTFOLIO_BROWSER` for the verification command. Do not install unrelated dependencies or expose a public server merely to run these checks.
+
+## Existing production version and legacy demos
 
 Live at [ylamouddan.com](https://ylamouddan.com/). Built with Next.js, React, TypeScript, and Tailwind CSS.
 
