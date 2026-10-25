@@ -1,30 +1,28 @@
 # Yassir Lamouddan — Engineering, software & automation
 
-## Local redesign draft · October 2026
+## Private client-focused redesign · October 2026
 
-This branch replaces the homepage with a scroll-linked component assembly and four newly built independent prototypes. It is a review draft: no branch push, public deployment, or production domain update has been performed. The original artwork remains in Git history and its existing private backup.
+This branch is a private review draft: no push, public deployment, or production-domain update. The original artwork and first draft remain in Git history and local checkpoints.
 
-| Project | Route | Implemented scope |
+| Demo | Route | What a visitor can try |
 | --- | --- | --- |
-| Bench | `/work/bench` | Inspectable symptom matching, tied hypotheses, missing evidence and next-test guidance. |
-| Loadshift | `/work/loadshift` | Exhaustive load scheduling, hourly demand constraints, energy conservation and infeasibility reporting. |
-| Relay | `/work/relay` | Human review boundary, injected outages, three-attempt retry budget and replay deduplication. |
-| Fieldnotes | `/work/fieldnotes` | Exact keyword passage retrieval, source identifiers, query coverage and unsupported-query abstention. |
+| Enquiry to quote | `/work/quotes` | Select services, calculate a price and prepare a proposal; scope changes clear stale proposals. |
+| Appointment booking | `/work/booking` | Choose a service and free time; sample bookings block overlapping appointments. |
+| Client portal | `/work/portal` | Review a deliverable, request changes and approve a specific version. |
+| Support desk | `/work/support` | Prepare a sourced policy-based reply; unknown or mixed-policy questions go to a person. |
 
-All four are independent browser prototypes with fictional data, not past client engagements. Fieldnotes does not use an LLM or embeddings. Relay is an in-memory simulation, not a persistent queue or authenticated service. Project pages state their individual limits.
+All are new independent browser demos with fictional data, not past client engagements. No emails are sent, appointments placed on real calendars, accounts created, refunds issued, or shared records saved. Support replies use explicit keyword rules, not an AI model.
 
-The opening uses the existing Framer Motion dependency, native scrolling, local Manrope font assets and a reduced-motion final state. Older project URLs are retained below but removed from the featured homepage.
-
-Validation: seven new logic tests, production build and 11 browser checks passed. Browser checks cover scroll changes, keyboard skip navigation, mobile overflow, four demo interactions, unknown-route 404, reduced motion and basic no-JavaScript content. This is not a comprehensive accessibility audit. Ignored `review/` contains local screenshots and the verification receipt.
+The scroll-linked opening moves enquiry/quote/booking panels into one workflow. It keeps native scrolling and short-mobile animation, respects system reduced-motion by default, and provides a persistent System/On/Off motion control. Appearance follows the system with manual Dark/Light overrides. Manrope is hosted locally. Older `/projects/` URLs are retained but are not featured.
 
 ```sh
-node --test tests/portfolio-lab.test.mjs
+node --test tests/client-tools.test.mjs
 npm run build
-# Uses an existing Playwright installation and Chromium; starts/stops a loopback server.
-node scripts/verify-portfolio-local.cjs
+# Uses an existing Playwright installation and Chromium; owns a temporary loopback server.
+node scripts/verify-client-portfolio.cjs
 ```
 
-If Playwright/Chromium are outside the default installation, set `PORTFOLIO_PLAYWRIGHT_PATH` and `PORTFOLIO_BROWSER` for the verification command. Do not install unrelated dependencies or expose a public server merely to run these checks.
+Set `PORTFOLIO_PLAYWRIGHT_PATH` and `PORTFOLIO_BROWSER` when the browser tooling is outside the default installation. Ignored `review/client-revision/` contains browser screenshots and the verification receipt. No comprehensive accessibility certification is implied by these focused checks.
 
 ## Existing production version and legacy demos
 

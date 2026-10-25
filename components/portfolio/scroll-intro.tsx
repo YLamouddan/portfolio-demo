@@ -1,34 +1,42 @@
 "use client";
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion, type MotionValue } from "framer-motion";
-import { ArrowDown, ArrowUpRight, CircuitBoard, Code2, Workflow, Search } from "lucide-react";
-
-function Part({ progress, from, end, rotate, className, children }: { progress:MotionValue<number>;from:[number,number];end:[number,number];rotate:number;className:string;children:React.ReactNode }) {
-  const reduced=useReducedMotion();
-  const x=useTransform(progress,[0,.72],[from[0],end[0]]);
-  const y=useTransform(progress,[0,.72],[from[1],end[1]]);
-  const turn=useTransform(progress,[0,.72],[rotate,0]);
-  return <motion.div className={`assembly-part ${className}`} style={{x:reduced?end[0]:x,y:reduced?end[1]:y,rotate:reduced?0:turn}}>{children}</motion.div>;
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
+import { ArrowDown, ArrowUpRight, Check, CalendarDays, MessageSquare, FileText } from "lucide-react";
+type MotionPreference="system"|"on"|"off";
+function WorkflowCard({progress,from,end,rotate,disabled,className,children}:{progress:MotionValue<number>;from:[number,number];end:[number,number];rotate:number;disabled:boolean;className:string;children:React.ReactNode}) {
+  const x=useTransform(progress,[0,.68],[from[0],end[0]]),y=useTransform(progress,[0,.68],[from[1],end[1]]),turn=useTransform(progress,[0,.68],[rotate,0]),scale=useTransform(progress,[0,.68],[.9,1]);
+  return <motion.div className={`workflow-card ${className}`} style={{x:disabled?end[0]:x,y:disabled?end[1]:y,rotate:disabled?0:turn,scale:disabled?1:scale}}>{children}</motion.div>;
 }
 export default function ScrollIntro() {
   const section=useRef<HTMLElement>(null);
-  const reduced=useReducedMotion();
+  const [systemReduced,setSystemReduced]=useState(false),[ready,setReady]=useState(false);
+  const [preference,setPreference]=useState<MotionPreference>("system");
+  useEffect(()=>{
+    const media=window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update=()=>setSystemReduced(media.matches);
+    update();media.addEventListener("change",update);
+    try{const saved=localStorage.getItem("portfolio-motion");if(saved==="system"||saved==="on"||saved==="off")setPreference(saved);}catch{}
+    setReady(true);
+    return()=>media.removeEventListener("change",update);
+  },[]);
+  const disabled=preference==="off"||(preference==="system"&&!!systemReduced);
   const {scrollYProgress:progress}=useScroll({target:section,offset:["start start","end end"]});
-  const openingOpacity=useTransform(progress,[0,.18,.3],[1,1,0]);
-  const middleOpacity=useTransform(progress,[.2,.32,.53,.64],[0,1,1,0]);
-  const finalOpacity=useTransform(progress,[.56,.73],[0,1]);
-  const connectionOpacity=useTransform(progress,[.35,.75],[0,1]);
-  const progressScale=useTransform(progress,[0,1],[0,1]);
-  return <section ref={section} className="scroll-intro" aria-labelledby="intro-title"><div className="intro-sticky"><div className="intro-grid page-width"><div className="intro-copy">
-    <p className="eyebrow">Electrical engineering / Software / Automation</p><div className="intro-chapters">
-      <motion.div className="intro-chapter chapter-opening" style={{opacity:reduced?0:openingOpacity}} aria-hidden="true"><p className="display-title">Good systems<br />start with<br /><span>the right parts.</span></p></motion.div>
-      <motion.div className="intro-chapter chapter-middle" style={{opacity:reduced?0:middleOpacity}} aria-hidden="true"><p className="display-title">The difference<br />is in the<br /><span>connections.</span></p></motion.div>
-      <motion.div className="intro-chapter chapter-final" style={{opacity:reduced?1:finalOpacity}} aria-hidden="true"><p className="display-title">Complex parts.<br />One system.<br /><span>Working together.</span></p></motion.div>
-      <h1 id="intro-title" className="sr-only">Yassir Lamouddan — electrical engineering, software and automation. I connect complex parts into working systems.</h1>
-    </div><p className="intro-description">I’m Yassir. I bring an engineer’s approach to software and the work it connects.</p><a className="text-link" href="#work">Explore the work <ArrowUpRight size={17} aria-hidden="true" /></a></div>
-    <div className="assembly" aria-hidden="true"><div className="assembly-coordinate coordinate-top">FIG. A — A CONNECTED SYSTEM</div><div className="assembly-coordinate coordinate-bottom">COMPONENTS → CONNECTIONS → CAPABILITY</div><div className="assembly-orbit orbit-one" /><div className="assembly-orbit orbit-two" />
-      <motion.svg className="assembly-connections" viewBox="0 0 560 460" style={{opacity:reduced?1:connectionOpacity}}><path d="M172 138 H280 V230 H388 M280 230 V322 H172 M388 138 V322" fill="none" stroke="currentColor" strokeWidth="2" /><circle cx="280" cy="230" r="8" fill="currentColor" /><circle cx="280" cy="230" r="22" fill="none" stroke="currentColor" strokeWidth="1" /></motion.svg>
-      <div className="assembly-centre"><Part progress={progress} from={[-155,-124]} end={[-108,-92]} rotate={-24} className="part-engineering"><CircuitBoard size={37} strokeWidth={1.3} /><span>Engineering</span><i>01</i></Part><Part progress={progress} from={[141,-115]} end={[108,-92]} rotate={24} className="part-software"><Code2 size={40} strokeWidth={1.3} /><span>Software</span><i>02</i></Part><Part progress={progress} from={[-145,119]} end={[-108,92]} rotate={-19} className="part-automation"><Workflow size={37} strokeWidth={1.3} /><span>Automation</span><i>03</i></Part><Part progress={progress} from={[145,137]} end={[108,92]} rotate={28} className="part-evidence"><Search size={37} strokeWidth={1.3} /><span>Understanding</span><i>04</i></Part></div>
-      <motion.div className="system-caption" style={{opacity:reduced?1:finalOpacity}}><span className="status-dot" /> Connected by design.</motion.div>
-    </div></div><div className="intro-footer page-width"><span className="scroll-instruction"><ArrowDown size={15} aria-hidden="true" /> Scroll to connect the parts</span><a href="#work">Skip to projects <ArrowDown size={14} aria-hidden="true" /></a><div className="intro-progress"><motion.div style={{scaleX:reduced?1:progressScale}} /></div></div></div></section>;
+  const first=useTransform(progress,[0,.17,.3],[1,1,0]),middle=useTransform(progress,[.23,.36,.54,.65],[0,1,1,0]),last=useTransform(progress,[.58,.76],[0,1]);
+  const firstY=useTransform(progress,[0,.17,.3],[0,0,-70]),middleY=useTransform(progress,[.23,.36,.54,.65],[70,0,0,-70]),lastY=useTransform(progress,[.58,.76],[70,0]);
+  const panelOpacity=useTransform(progress,[.25,.65],[0,1]),panelScale=useTransform(progress,[.25,.7],[.7,1]);
+  return <section ref={section} className={`scroll-intro client-intro ${disabled?"motion-disabled":"motion-enabled"}`} aria-labelledby="intro-title" data-motion={disabled?"off":"on"} data-preferences-ready={ready?"true":"false"}>
+    <div className="intro-sticky"><div className="intro-grid page-width"><div className="intro-copy"><p className="eyebrow">Websites & automation for your business</p><div className="intro-chapters">
+      <motion.div className="intro-chapter chapter-opening" style={{opacity:disabled?0:first,y:disabled?0:firstY}} aria-hidden="true"><p className="display-title">More clients.<br />Less chasing.<br /><span>Make it flow.</span></p></motion.div>
+      <motion.div className="intro-chapter chapter-middle" style={{opacity:disabled?0:middle,y:disabled?0:middleY}} aria-hidden="true"><p className="display-title">From a first<br />“hello” to<br /><span>“you’re booked.”</span></p></motion.div>
+      <motion.div className="intro-chapter chapter-final" style={{opacity:disabled?1:last,y:disabled?0:lastY}} aria-hidden="true"><p className="display-title">Your business.<br />Working<br /><span>beautifully.</span></p></motion.div>
+      <h1 id="intro-title" className="sr-only">Yassir Lamouddan — websites and automation that help your business turn enquiries into booked work.</h1>
+    </div><p className="intro-description">I’m Yassir. I build websites and tools that help you win work, look after clients, and spend less time on admin.</p><a className="text-link" href="#work">See what I can build <ArrowUpRight size={17} aria-hidden="true"/></a></div>
+    <div className="workflow-scene" aria-hidden="true"><motion.div className="workflow-window" style={{opacity:disabled?1:panelOpacity,scale:disabled?1:panelScale}}><div className="window-chrome"><i/><i/><i/><span>Your business, connected.</span></div><div className="workflow-track"/><div className="workflow-window-caption"><span className="status-dot"/>One enquiry. Every next step in place.</div></motion.div><div className="workflow-card-origin">
+      <WorkflowCard progress={progress} from={[-165,-115]} end={[-175,0]} rotate={-20} disabled={disabled} className="card-enquiry"><span className="workflow-card-step">01 / Enquiry</span><MessageSquare size={24} strokeWidth={1.4}/><strong>A new opportunity.</strong><p>“Can you help us<br/>with our website?”</p><span className="workflow-card-state">Enquiry received <Check size={12}/></span></WorkflowCard>
+      <WorkflowCard progress={progress} from={[145,-85]} end={[0,0]} rotate={16} disabled={disabled} className="card-quote"><span className="workflow-card-step">02 / Quote</span><FileText size={24} strokeWidth={1.4}/><strong>A clear proposal.</strong><p>Scope, price and<br/>next steps. Together.</p><span className="workflow-card-state">Proposal accepted <Check size={12}/></span></WorkflowCard>
+      <WorkflowCard progress={progress} from={[25,130]} end={[175,0]} rotate={-10} disabled={disabled} className="card-booking"><span className="workflow-card-step">03 / Booking</span><CalendarDays size={24} strokeWidth={1.4}/><strong>Time to get started.</strong><p>The right time.<br/>No email tennis.</p><span className="workflow-card-state">You’re booked <Check size={12}/></span></WorkflowCard>
+    </div><span className="scene-sample">Illustrative workflow · scroll to connect</span></div></div>
+    <div className="intro-footer page-width"><label className="motion-control"><span>Scroll animation</span><select aria-label="Scroll animation" value={preference} onChange={e=>{const value=e.target.value as MotionPreference;setPreference(value);try{localStorage.setItem("portfolio-motion",value);}catch{}}}><option value="system">System</option><option value="on">On</option><option value="off">Off</option></select></label><span className="scroll-instruction"><ArrowDown size={15} aria-hidden="true"/>{disabled?"Reduced motion is active":"Scroll and watch it come together"}</span><a href="#work">Skip intro <ArrowDown size={14} aria-hidden="true"/></a><div className="intro-progress"><motion.div style={{scaleX:disabled?1:progress}}/></div></div>
+    </div>
+  </section>;
 }

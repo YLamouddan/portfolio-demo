@@ -9,17 +9,17 @@ const manrope = localFont({ src: "../public/fonts/manrope.ttf", display: "swap",
 export const metadata: Metadata = {
   metadataBase: new URL("https://ylamouddan.com/"),
 
-  title: "Yassir Lamouddan | Engineering, Software & Automation",
+  title: "Yassir Lamouddan | Websites & Business Automation",
   authors: {
     name: "YLamouddan",
   },
 
   description:
-    "Electrical engineering meets software and automation. Explore independent interactive prototypes in diagnostics, energy scheduling, workflow reliability and document retrieval.",
+    "Websites and practical business tools by Yassir Lamouddan. Explore working demos for quotes, appointment booking, client portals and customer support.",
   openGraph: {
-    title: "Yassir Lamouddan | Engineering, Software & Automation",
+    title: "Yassir Lamouddan | Websites & Business Automation",
     description:
-      "Electrical engineering meets software and automation. Explore independent interactive prototypes and the reasoning behind them.",
+      "Websites, booking tools, client portals and practical automation for growing businesses.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
     images: [],
@@ -38,7 +38,8 @@ export default function RootLayout({
       <body className={`${manrope.className} ${manrope.variable}`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="system"
+          storageKey="portfolio-appearance-v2"
           enableSystem
           disableTransitionOnChange
         >
