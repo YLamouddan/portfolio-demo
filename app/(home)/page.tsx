@@ -1,3 +1,4 @@
+import Brand from "@/components/portfolio/brand";
 import Link from "next/link";
 import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { SiPython, SiReact, SiTypescript, SiDocker, SiLinux, SiGit } from "react-icons/si";
@@ -9,7 +10,7 @@ import { portfolioProjects } from "@/lib/portfolio-projects";
 export default function Page() {
   return <div className="portfolio">
     <a className="skip-navigation" href="#main-content">Skip to content</a>
-    <header className="portfolio-header"><nav className="page-width" aria-label="Main navigation"><Link href="/" className="wordmark">Yassir Lamouddan<span className="wordmark-dot">.</span></Link><div className="nav-links"><a href="#work">Work</a><AppearanceControls/><a href="#about">About</a><a href="#contact" className="nav-contact">Let’s talk <ArrowUpRight size={15} aria-hidden="true" /></a></div></nav></header>
+    <header className="portfolio-header"><nav className="page-width" aria-label="Main navigation"><Brand/><div className="nav-links"><a href="#work">Work</a><AppearanceControls/><a href="#about">About</a><a href="#contact" className="nav-contact">Let’s talk <ArrowUpRight size={15} aria-hidden="true" /></a></div></nav></header>
     <main id="main-content">
       <ScrollIntro />
       <section id="work" className="work-section page-width" aria-labelledby="work-heading">

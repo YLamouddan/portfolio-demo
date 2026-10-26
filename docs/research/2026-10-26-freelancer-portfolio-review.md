@@ -2,7 +2,7 @@
 
 ## What the owner has accepted and rejected
 
-Keep Signal and use it as a foundation for research beyond sales opportunities, including suppliers. Reject Forma, Flow Studio, the proposed document-contradiction investigator and disruption-planning simulator. The owner subsequently approved all three research-backed directions together: catalogue automation, document extraction and business-system integration, alongside Signal. The opening must introduce the actual showcased work. The whole current site must remain readable in dark/light themes and on phones. Public deployment is not authorised.
+Keep Signal and use it as a foundation for research beyond sales opportunities, including suppliers. Reject Forma, Flow Studio, the proposed document-contradiction investigator and disruption-planning simulator. The owner subsequently approved all three research-backed directions together: catalogue automation, document extraction and business-system integration, alongside Signal. The opening must introduce the actual showcased work. The whole current site must remain readable in dark/light themes and on phones. The owner authorised backup and production deployment after reviewing the four implemented projects on 2026-10-26.
 
 ## First-party references reviewed
 

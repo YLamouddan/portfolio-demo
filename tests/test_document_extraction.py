@@ -17,7 +17,7 @@ class ExtractionTest(unittest.TestCase):
   doc=fitz.open();p=doc.new_page();p.insert_text((40,80),'Supplier: Example\nReference: QA-88\nProduct: A test product\nNote: no quantities given',fontsize=14)
   result=extractor.extract(doc.tobytes());quantity=next(f for f in result['fields'] if f['id']=='quantity');self.assertEqual(quantity['status'],'missing');self.assertEqual(quantity['value'],'')
  def test_type_size_and_page_limits(self):
-  for raw in [b'',b'not an image',b'x'*6_000_001]:
+  for raw in [b'',b'not an image',b'x'*3_500_001]:
    with self.assertRaises(ValueError):extractor.extract(raw)
   doc=fitz.open()
   for _ in range(3):doc.new_page()

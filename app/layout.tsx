@@ -11,6 +11,10 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://ylamouddan.com/"),
 
   title: "Yassir Lamouddan | Websites & Business Automation",
+  icons: {
+    icon: [{ url: "/brand/yl-mark.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
+  },
   authors: {
     name: "YLamouddan",
   },

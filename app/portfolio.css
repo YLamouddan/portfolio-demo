@@ -92,3 +92,8 @@
  .signal-intro .story-result-footer{padding:8px 11px;font-size:7px}
  .signal-intro .intro-footer{bottom:14px}
 }
+
+/* A compact YL signature, shared with the browser and home-screen icons. */
+.wordmark{display:inline-flex;align-items:center;gap:11px;min-height:44px}.brand-symbol{flex:none;color:var(--blue);width:34px;height:34px}.brand-name{display:inline-block}
+@media(max-width:760px){.wordmark{gap:8px;font-size:13px}.brand-symbol{width:28px;height:28px}.portfolio-header nav{gap:12px}.nav-links{gap:14px}}
+@media(max-width:390px){.wordmark{font-size:12px;gap:7px}.brand-symbol{width:26px;height:26px}.nav-links{gap:10px}.portfolio-header .nav-contact{font-size:10px}}

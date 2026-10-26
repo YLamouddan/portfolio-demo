@@ -2,15 +2,14 @@
 """Bounded local PDF/image extraction. JSON stdin -> JSON stdout; no files retained."""
 import base64,io,json,os,re,sys,resource
 from pathlib import Path
-resource.setrlimit(resource.RLIMIT_AS,(1_600_000_000,1_600_000_000))
-resource.setrlimit(resource.RLIMIT_CPU,(25,25))
 import fitz
 from PIL import Image
 Image.MAX_IMAGE_PIXELS=12_000_000
-TESSDATA=os.environ.get('PORTFOLIO_OCR_DATA','/opt/worktrees/portfolio-ocr-runtime/tessdata')
+BUNDLED_DATA=Path(__file__).resolve().parents[1]/'data/ocr'
+TESSDATA=os.environ.get('PORTFOLIO_OCR_DATA',str(BUNDLED_DATA) if (BUNDLED_DATA/'eng.traineddata').is_file() else '/opt/worktrees/portfolio-ocr-runtime/tessdata')
 SCHEMA=[('supplier','Supplier',['Supplier','Sender','Vendor']),('reference','Document reference',['Reference','Document ID','Delivery reference','Delivery note number']),('date','Dispatch date',['Dispatch date','Shipped on','Date']),('currency','Currency',['Currency']),('quantity','Quantity',['Quantity','Units']),('total','Declared total',['Declared total','Total value','Total']),('product','Product',['Product','Description','Item'])]
 def extract(data):
- if not data or len(data)>6_000_000:raise ValueError('Choose a PDF, PNG or JPEG under 6 MB.')
+ if not data or len(data)>3_500_000:raise ValueError('Choose a PDF, PNG or JPEG under 3.5 MB.')
  is_pdf=data.startswith(b'%PDF-');mode='pdf-text';pages=[];source=None
  if is_pdf:
   source=fitz.open(stream=data,filetype='pdf')
@@ -59,8 +58,11 @@ def page_result(page,pix):
  for words in grouped.values():
   words.sort(key=lambda w:w[7]);box=[min(w[0] for w in words)/page.rect.width,min(w[1] for w in words)/page.rect.height,max(w[2] for w in words)/page.rect.width,max(w[3] for w in words)/page.rect.height]
   lines.append({'text':' '.join(w[4] for w in words),'bbox':box})
- return {'width':pix.width,'height':pix.height,'image':'data:image/png;base64,'+base64.b64encode(pix.tobytes('png')).decode(),'lines':lines,'text':'\n'.join(line['text']for line in lines)}
+ image=Image.open(io.BytesIO(pix.tobytes('png'))).convert('RGB');image.thumbnail((1200,1600));buf=io.BytesIO();image.save(buf,format='JPEG',quality=78,optimize=True)
+ return {'width':image.width,'height':image.height,'image':'data:image/jpeg;base64,'+base64.b64encode(buf.getvalue()).decode(),'lines':lines,'text':'\n'.join(line['text']for line in lines)}
 if __name__=='__main__':
+ resource.setrlimit(resource.RLIMIT_AS,(1_600_000_000,1_600_000_000))
+ resource.setrlimit(resource.RLIMIT_CPU,(25,25))
  try:
   payload=sys.stdin.buffer.read(8_100_000);item=json.loads(payload);raw=base64.b64decode(item['data'],validate=True);result=extract(raw);print(json.dumps(result))
  except Exception as error:

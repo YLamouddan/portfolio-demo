@@ -24,7 +24,7 @@ scripts/audit-mobile-themes.cjs tests the ACTUAL preview, captures initial/final
 
 ## Recovery and existing constraints
 
-Checkpoint 571029b on checkpoint/flagships-before-signal-direction-20261026 preserves the prior exact draft. Worktree /opt/worktrees/portfolio-scroll-20261025, branch feat/signal-led-portfolio-20261026. Checkpoint 9108a88 preserves the preceding Signal-only repair; feature branch feat/catalogue-documents-integration-20261026. New changes remain local; no pushes or production deployment. Keep original artwork and no-CV rule. Keep iCloud MX unchanged; me@ylamouddan.com exists locally as a Mailu alias but external delivery at that address remains unverified, so Gmail contact remains.
+Checkpoint 571029b on checkpoint/flagships-before-signal-direction-20261026 preserves the prior exact draft. Worktree /opt/worktrees/portfolio-scroll-20261025, branch feat/signal-led-portfolio-20261026. Checkpoint 9108a88 preserves the preceding Signal-only repair; feature branch feat/catalogue-documents-integration-20261026. The owner subsequently authorised backup and deployment on 2026-10-26. Preserve the rollback tag backup/production-before-redesign-20261026 and use feature previews for later revisions. Keep original artwork and no-CV rule. Keep iCloud MX unchanged; me@ylamouddan.com exists locally as a Mailu alias but external delivery at that address remains unverified, so Gmail contact remains.
 
 ---
 
@@ -52,3 +52,7 @@ Focused domain tests: tests/showcase-models.test.mjs (branching/approval, retrie
 
 ## Safe operations
 Checkpoint 75a4d4f on checkpoint/client-demos-before-flagships-20261026 preserves exact prior draft; feature branch feat/flagship-showcases-smooth-scroll-20261026. No pushes: branch previews/publication are not authorised. Rebuild then restart only portfolio-tailscale-preview-20261025.service, retaining its 100.112.32.62:3418 binding. Mailu me@ alias exists, but incoming domain MX still routes to iCloud by the owner's explicit decision; current Gmail contact stays until the desired address is verified at its actual receiving provider.
+
+## Deployment packaging and branding — 2026-10-26
+
+The reviewed experience is preserved. A compact original YL monogram now appears beside the name and in the favicon/Apple home-screen icon; inline header colours follow the theme. Node.js 24 is pinned to override Vercel’s retired Node 20 setting. Next.js moves to the patched 15.5.28 release with asynchronous route parameters. Folio's shared Python extraction core is packaged as a native Vercel function, with pinned dependencies and bundled English language data. Uploads are capped at 3.5 MB and source previews compressed to fit hosting payload limits. The private Next preview still uses the same extraction core through its local adapter.
