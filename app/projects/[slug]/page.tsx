@@ -6,14 +6,16 @@ import { projectNotes } from "@/lib/project-notes";
 type Slug = keyof typeof projectNotes;
 function getProject(slug: string) { return Object.prototype.hasOwnProperty.call(projectNotes, slug) ? projectNotes[slug as Slug] : undefined; }
 export function generateStaticParams() { return Object.keys(projectNotes).map((slug) => ({ slug })); }
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const project = getProject(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
   if (!project) return { title: "Project not found" };
   const title = `${project.title} | Yassir Lamouddan`, description = project.summary;
-  return { title, description, openGraph: { title, description, url: `https://ylamouddan.com/projects/${params.slug}`, images: [] }, twitter: { card: "summary", title, description, images: [] } };
+  return { title, description, openGraph: { title, description, url: `https://ylamouddan.com/projects/${slug}`, images: [] }, twitter: { card: "summary", title, description, images: [] } };
 }
-export default function Page({ params }: { params: { slug: string } }) {
-  const project = getProject(params.slug);
+export default async function Page({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProject(slug);
   if (!project) notFound();
   return <main className="bg-black text-white min-h-screen px-5 py-10"><div className="max-w-4xl mx-auto"><Link href="/#projects" className="text-sm text-green-400">← Back to projects</Link><p className="mt-16 text-sm text-green-400">Private project · Overview</p><h1 className="text-4xl sm:text-6xl font-semibold tracking-tight mt-4">{project.title}</h1><p className="text-xl text-gray-300 mt-6">{project.summary}</p><p className="text-gray-400 leading-relaxed mt-8 max-w-3xl">{project.intro}</p>
     <ol aria-label="System workflow" className="grid grid-cols-2 sm:grid-cols-4 gap-3 my-10">{project.steps.map((step, i) => <li key={step} className="ops-panel p-5"><span className="text-xs text-green-400">0{i+1}</span><p className="mt-4 text-sm">{step}</p></li>)}</ol>

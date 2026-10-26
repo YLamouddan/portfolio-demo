@@ -1,35 +1,37 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import "./portfolio.css";
+import "./showcases.css";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const spaceGrotesk = Space_Grotesk({ subsets: ["latin"] });
+const manrope = localFont({ src: "../public/fonts/manrope.ttf", display: "swap", variable: "--font-manrope" });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ylamouddan.com/"),
 
-  title: "Yassir Lamouddan | Business Automation & Web Development",
+  title: "Yassir Lamouddan | Websites & Business Automation",
+  icons: {
+    icon: [{ url: "/brand/yl-mark.svg", type: "image/svg+xml" }],
+    apple: [{ url: "/brand/apple-touch-icon.png", sizes: "180x180" }],
+  },
   authors: {
     name: "YLamouddan",
   },
 
   description:
-    "Automation, custom software, and connected systems by Yassir Lamouddan. Explore sales operations, purchasing workflows, research automation, and cloud projects.",
+    "Yassir Lamouddan turns business bottlenecks into working automation. Explore research, catalogue processing, real document extraction and business-system reconciliation.",
   openGraph: {
-    title: "Yassir Lamouddan | Business Automation & Web Development",
+    title: "Yassir Lamouddan | Websites & Business Automation",
     description:
-      "Automation, custom software, and connected systems by Yassir Lamouddan. Explore sales operations, purchasing workflows, research automation, and cloud projects.",
+      "Interactive product experiences, workflow architecture and decision tools for ambitious businesses.",
     url: "https://ylamouddan.com/",
     siteName: "YLamouddan",
-    images: "/og.png",
+    images: [],
     type: "website",
   },
   keywords: ["Yassir Lamouddan", "web development", "automation", "self-hosting"],
 };
-//export const metadata: Metadata = {
-//title: "Yassir Lamouddan | Development & Automation",
-//description: "Yassir Lamouddan's Personal Portfolio",
-//};
 
 export default function RootLayout({
   children,
@@ -38,11 +40,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={spaceGrotesk.className}>
+      <body className={`${manrope.className} ${manrope.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          storageKey="portfolio-appearance-v3"
+          enableSystem={false}
           disableTransitionOnChange
         >
           {children}

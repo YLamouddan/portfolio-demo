@@ -34,3 +34,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local review evidence; never deployed.
+/review/
+
+# Local Python syntax-check cache
+/scripts/__pycache__/
+
+/tests/__pycache__/
+
+/api/__pycache__/
