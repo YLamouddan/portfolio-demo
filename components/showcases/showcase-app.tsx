@@ -1,4 +1,4 @@
 "use client";
-import FlowStudio from './flow-studio';import Forma from './forma';import Signal from './signal';
-export type ShowcaseKind='flow-studio'|'forma'|'signal';
-export default function ShowcaseApp({kind}:{kind:ShowcaseKind}){return <section id="workspace" className="flagship-workspace" aria-label={`${kind} interactive showcase`}>{kind==='flow-studio'?<FlowStudio/>:kind==='forma'?<Forma/>:<Signal/>}</section>;}
+import Signal from './signal';import Catalogue from './catalogue';import Documents from './documents';import Bridge from './bridge';
+export type ShowcaseKind='signal'|'catalogue'|'folio'|'bridge';
+export default function ShowcaseApp({kind}:{kind:ShowcaseKind}){return <section id="workspace" className="flagship-workspace" aria-label={`${kind} interactive showcase`}>{kind==='signal'?<Signal/>:kind==='catalogue'?<Catalogue/>:kind==='folio'?<Documents/>:<Bridge/>}</section>;}

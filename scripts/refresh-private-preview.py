@@ -35,7 +35,7 @@ def verify(url,wait=False):
   assert status==200 and len(data)>0,(asset,status)
   assert 'text/html' not in content_type,(asset,'HTML returned instead of asset')
   if asset.endswith('.css'):assert 'text/css' in content_type,(asset,content_type)
- return {'html_status':code,'local_assets_checked':len(local),'css_checked':sum(a.endswith('.css') for a in local),'new_signal_intro':'Too much data.' in html}
+ return {'html_status':code,'local_assets_checked':len(local),'css_checked':sum(a.endswith('.css') for a in local),'new_signal_intro':'data-portfolio-version="business-automation"' in html or 'Too much data.' in html}
 def main():
  parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--apply',action='store_true');args=parser.parse_args()
  build=ROOT/'.next';assert (build/'BUILD_ID').is_file(),'Run npm run build first'
@@ -54,6 +54,8 @@ def main():
     if not target.exists():target.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(source,target)
  shutil.copytree(ROOT/'public',release/'public')
  for name in ('package.json','package-lock.json','next.config.mjs'):shutil.copy2(ROOT/name,release/name)
+ if (ROOT/'scripts/document-extract.py').is_file():
+  (release/'scripts').mkdir(exist_ok=True);shutil.copy2(ROOT/'scripts/document-extract.py',release/'scripts/document-extract.py')
  (release/'node_modules').symlink_to((ROOT/'node_modules').resolve(),target_is_directory=True)
  with socket.socket() as sock:sock.bind(('127.0.0.1',0));probe_port=sock.getsockname()[1]
  process=subprocess.Popen(['/usr/bin/node',str(release/'node_modules/next/dist/bin/next'),'start','-H','127.0.0.1','-p',str(probe_port)],cwd=release,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)

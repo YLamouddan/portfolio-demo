@@ -1,10 +1,12 @@
-# Current direction — Signal-led portfolio and mobile repair
+# Current direction — business automation and four working showcases
 
-The owner accepted Signal and rejected Forma/Flow Studio as featured work, plus both proposed replacement pairs. Two replacement projects remain undecided. Read [the freelancer research](research/2026-10-26-freelancer-portfolio-review.md) before proposing or building another pair. No public publication is authorised.
+The owner approved Catalogue, document extraction and business-system integration together, retaining Signal. Forma and Flow Studio are archived. The fresh introduction is “I turn business bottlenecks into working automation.” It draws on the process-first positioning of the saved LinkedIn draft without copying its sentences. The supporting About copy names supplier files, document copying and disconnected tools; no private employer details or invented business outcomes appear.
 
 ## Current visible experience
 
-The opening uses Signal's real sample records and current ranking weights: source excerpts and decision criteria converge into an evidence-linked shortlist. Home navigation now features only Signal; rejected projects remain recoverable/directly reachable but are not promoted. Dark/light Material SVG and motion On/Off switches remain. Signal's supplier/general-research application is a potential extension, not a claim of an already connected supplier feed.
+Four featured routes: `/work/signal`, `/work/catalogue`, `/work/folio`, `/work/bridge`. Catalogue implements real CSV parsing/mapping, source reconciliation, exact-input approval and safe export. Folio implements real local PDF text extraction and English OCR with source highlights and review-gated export. Bridge implements comparison, approval, optimistic version checks and isolated failures over simulated adapters. Every project identifies its limits and uses fictional samples. See README for the runtime and focused checks.
+
+The scroll opening remains tied to Signal's actual sample records, priorities and scoring. The owner accepted Signal; the new overall positioning spans all four projects. Binary Material sun/moon and motion On/Off controls remain. Supplier research is a possible Signal use, not a connected live supplier feed.
 
 ## Phone failure and repair
 
@@ -18,11 +20,11 @@ Current service: portfolio-private-preview.service. The former portfolio-tailsca
 
 Phones get a full-width readable comparison rather than a scaled desktop result; two leading records are shown in the animated preview, while the app still contains the complete dataset. Moving source fragments fit inside the illustration region above footer controls. Short-height mobile layouts retain animation with smaller but readable headline/result typography.
 
-scripts/audit-mobile-themes.cjs tests the ACTUAL preview, captures initial/final-scroll/work-section screenshots, verifies all asset requests, fonts, skip-link hiding, document width, and hero/control separation. It checks visible main text contrast against effective CSS backgrounds. Checked: homepage at 390×740 and 375×600, Signal at 390×740 and 1440×1000, each in dark/light. Eight layout/theme combinations passed with no asset/page errors or reported text-contrast warnings. This is Chromium mobile emulation, not a real Safari/iPhone test or complete accessibility certification. Screenshots/receipt live in ignored review/mobile-theme/; release receipts in review/releases/.
+scripts/audit-mobile-themes.cjs tests the ACTUAL preview, captures initial/final-scroll/work-section screenshots, verifies every asset request, fonts, skip-link hiding, document width and hero/control separation. It checks visible main text contrast against effective CSS backgrounds. Current coverage is homepage at 390×740 and 375×600 plus all four project routes at 390×740 and 1440×1000, each in dark/light (20 combinations). Folio loads an actual PDF through the snapshot's extraction endpoint. The audit saves progress after every case and supports PORTFOLIO_AUDIT_RESUME=1, so a browser interruption need not repeat passing cases. Each new case gets a fresh context to bound screenshot/rendering memory. This is Chromium mobile emulation, not a physical Safari/iPhone test or complete accessibility certification. Screenshots/receipt live in ignored review/mobile-theme/; release receipts in review/releases/.
 
 ## Recovery and existing constraints
 
-Checkpoint 571029b on checkpoint/flagships-before-signal-direction-20261026 preserves the prior exact draft. Worktree /opt/worktrees/portfolio-scroll-20261025, branch feat/signal-led-portfolio-20261026. New changes remain local; no pushes or production deployment. Keep original artwork and no-CV rule. Keep iCloud MX unchanged; me@ylamouddan.com exists locally as a Mailu alias but external delivery at that address remains unverified, so Gmail contact remains.
+Checkpoint 571029b on checkpoint/flagships-before-signal-direction-20261026 preserves the prior exact draft. Worktree /opt/worktrees/portfolio-scroll-20261025, branch feat/signal-led-portfolio-20261026. Checkpoint 9108a88 preserves the preceding Signal-only repair; feature branch feat/catalogue-documents-integration-20261026. New changes remain local; no pushes or production deployment. Keep original artwork and no-CV rule. Keep iCloud MX unchanged; me@ylamouddan.com exists locally as a Mailu alias but external delivery at that address remains unverified, so Gmail contact remains.
 
 ---
 

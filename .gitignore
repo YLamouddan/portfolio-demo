@@ -40,3 +40,5 @@ next-env.d.ts
 
 # Local Python syntax-check cache
 /scripts/__pycache__/
+
+/tests/__pycache__/

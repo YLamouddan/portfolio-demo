@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Software and automation by Yassir Lamouddan. Explore a visual workflow studio, a live 3D product configurator and an evidence-driven intelligence workspace.",
+    "Yassir Lamouddan turns business bottlenecks into working automation. Explore research, catalogue processing, real document extraction and business-system reconciliation.",
   openGraph: {
     title: "Yassir Lamouddan | Websites & Business Automation",
     description:
