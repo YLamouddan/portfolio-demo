@@ -1,3 +1,33 @@
+# Current direction — Signal-led portfolio and mobile repair
+
+The owner accepted Signal and rejected Forma/Flow Studio as featured work, plus both proposed replacement pairs. Two replacement projects remain undecided. Read [the freelancer research](research/2026-10-26-freelancer-portfolio-review.md) before proposing or building another pair. No public publication is authorised.
+
+## Current visible experience
+
+The opening uses Signal's real sample records and current ranking weights: source excerpts and decision criteria converge into an evidence-linked shortlist. Home navigation now features only Signal; rejected projects remain recoverable/directly reachable but are not promoted. Dark/light Material SVG and motion On/Off switches remain. Signal's supplier/general-research application is a potential extension, not a claim of an already connected supplier feed.
+
+## Phone failure and repair
+
+The owner's iPhone screenshots showed default serif text, visible screen-reader-only content and unstyled links. The actual preview returned old cached HTML with a CSS URL that returned HTTP 400 after a source rebuild replaced .next assets. The previous browser checks had tested clean temporary servers, not the stale long-running preview; they did not catch this delivery failure.
+
+The preview now runs from an independent built release under /opt/worktrees/portfolio-private-releases/. scripts/refresh-private-preview.py is dry-run first; --apply copies a completed build/public files, checks candidate HTML and every referenced stylesheet/script/font on loopback, then atomically switches the dedicated user service and verifies the actual Tailscale URL. It retains previous releases and older content-addressed assets for already-open tabs. Source rebuilds do not modify a running release. No service is boot-enabled by this helper.
+
+Current service: portfolio-private-preview.service. The former portfolio-tailscale-preview-20261025.service is stopped. Do not restart that source-tree service. Refresh with `npm run build` followed by `python3 scripts/refresh-private-preview.py --apply`, and verify the user-visible endpoint. Both service and address are private to the Tailscale interface; no Funnel, public binding, domain change or Vercel push.
+
+## Mobile composition and verification
+
+Phones get a full-width readable comparison rather than a scaled desktop result; two leading records are shown in the animated preview, while the app still contains the complete dataset. Moving source fragments fit inside the illustration region above footer controls. Short-height mobile layouts retain animation with smaller but readable headline/result typography.
+
+scripts/audit-mobile-themes.cjs tests the ACTUAL preview, captures initial/final-scroll/work-section screenshots, verifies all asset requests, fonts, skip-link hiding, document width, and hero/control separation. It checks visible main text contrast against effective CSS backgrounds. Checked: homepage at 390×740 and 375×600, Signal at 390×740 and 1440×1000, each in dark/light. Eight layout/theme combinations passed with no asset/page errors or reported text-contrast warnings. This is Chromium mobile emulation, not a real Safari/iPhone test or complete accessibility certification. Screenshots/receipt live in ignored review/mobile-theme/; release receipts in review/releases/.
+
+## Recovery and existing constraints
+
+Checkpoint 571029b on checkpoint/flagships-before-signal-direction-20261026 preserves the prior exact draft. Worktree /opt/worktrees/portfolio-scroll-20261025, branch feat/signal-led-portfolio-20261026. New changes remain local; no pushes or production deployment. Keep original artwork and no-CV rule. Keep iCloud MX unchanged; me@ylamouddan.com exists locally as a Mailu alias but external delivery at that address remains unverified, so Gmail contact remains.
+
+---
+
+## Prior flagship implementation record (superseded as featured selection)
+
 # Flagship showcase revision — 2026-10-26
 
 ## Owner direction

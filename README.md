@@ -1,6 +1,14 @@
 # Yassir Lamouddan — Engineering, software & automation
 
-## Private flagship showcase draft · October 2026
+## Current private review — Signal and mobile repair
+
+Only Signal is currently featured; the owner rejected Forma/Flow Studio as the portfolio's other projects. Their direct routes/source remain available for recovery, while replacements await selection based on [real freelancer case studies](docs/research/2026-10-26-freelancer-portfolio-review.md).
+
+The opening now demonstrates Signal's sample sources, priorities and computed ranking. Mobile has a readable full-width result and bounded artwork above its controls. The homepage and Signal have been checked in dark/light on mobile and desktop.
+
+The private preview runs from independent build snapshots. Never rebuild inside the directory used by a running Next production preview: cached HTML may reference assets removed by the rebuild. Build source, then use the dry-run-first `scripts/refresh-private-preview.py --apply`. The helper checks candidate HTML/CSS/JS/fonts, switches only its private user service, retains prior releases/assets, and verifies the real endpoint. `scripts/audit-mobile-themes.cjs` audits that endpoint. No public deployment is performed.
+
+## Earlier flagship prototypes · October 2026
 
 No branch push, public deployment or production-domain change has been made. The current draft features three independent product prototypes with real browser interactions and explicit integration boundaries.
 
